@@ -1,0 +1,37 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #004225;
+    color: white;
+    padding: 20px;
+    height: 10px; 
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+  }
+  
+  .header .logo img {
+    height: 40px; 
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+  }
+  
+  .navigation a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+  }
+  
+  .navigation a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .navigation {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  
