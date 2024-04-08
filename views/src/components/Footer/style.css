@@ -1,0 +1,85 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #004225; 
+    color: white; 
+    font-family: 'Arial', sans-serif; 
+    font-weight: bold; 
+}
+
+
+.footer-left {
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+    text-align: center; 
+    margin-left: 50px;
+}
+.footer-left img {
+    width: 200px; 
+}
+
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container img {
+    width: 200px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.logo-text {
+    font-size: 26px; /* Ajusta el tamaño del texto según sea necesario */
+    color: rgb(255, 255, 255); /* Color del texto */
+}
+
+.footer-center {
+    display: flex;
+}
+
+.footer-center img {
+    width: 30px; 
+    margin-right: 10px; 
+}
+
+.footer-right {
+    margin-right: 100px; 
+}
+
+
+.footer-center .social-list,
+.footer-right .contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-center .social-list li,
+.footer-right .contact-list li {
+    margin-bottom: 10px;
+}
+
+.footer-center .social-list img {
+    width: 30px;
+    margin-right: 5px; 
+    position: relative;
+}
+
+.social-name {
+    position: absolute;
+    color: white;
+    padding: 5px;   
+}
+
+.footer-right .contact-list li {
+    font-size: 14px; 
+}
+
+.footer-right .contact-list li:first-child {
+    font-weight: bold; /* Aplica negrita al primer elemento de la lista */
+}
