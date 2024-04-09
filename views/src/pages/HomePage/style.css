@@ -138,3 +138,47 @@
     font-weight: bold; 
     font-family: 'Arial', sans-serif; 
   }
+
+  .white-section {
+    background-color: #fff; /* Fondo blanco */
+    padding: 50px 0;
+    color: #333; 
+    font-family: 'Arial', sans-serif; 
+  }
+  
+  .horizontal-line {
+    border: 0;
+    border-top: 1px solid #000; /* Línea horizontal negra */
+    width: 75%;
+    margin: 0 auto; /* Centra horizontalmente la línea */
+  }
+  
+  .white-section-content {
+    text-align: center; /* Centra horizontalmente el contenido */
+    max-width: 800px; /* Ancho máximo del contenido */
+    margin: 0 auto; /* Centra horizontalmente el contenido */
+  }
+  
+  .white-section-content h2 {
+    padding-top: 40px; /* Espaciado superior */
+  }
+  
+  .white-section-content p {
+    width: 60%; /* Ancho del texto */
+    margin: 20px auto; /* Espaciado alrededor del texto y lo centra horizontalmente */
+  }
+  
+  .white-section-content button {
+    display: block; /* Para que el botón ocupe todo el ancho disponible */
+    margin: 20px auto; 
+    background-color: #ba7a39;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold; 
+    font-family: 'Arial', sans-serif; 
+    margin-bottom: 50px;
+  }
+  

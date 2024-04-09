@@ -61,6 +61,17 @@ function HomePage() {
           <button>Conocer más</button>
         </div>
       </div>
+      <div className="white-section">
+        <hr className="horizontal-line" /> 
+        <div className="white-section-content">
+          <h2>¿Interesado en ayudar?</h2>
+          <p>La fundación busca tanto recursos como personal voluntario para las giras y proyectos para seguir apoyando a los pueblos originarios, si está interesado no dude en dirigirse a la sección de donaciones</p>
+          <button>Donaciones</button>
+        </div>
+        <hr className="horizontal-line" /> 
+      </div>
+
+
     </div>
   );
 }
