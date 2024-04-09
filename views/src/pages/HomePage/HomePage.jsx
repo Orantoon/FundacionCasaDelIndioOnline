@@ -1,6 +1,8 @@
 import React from 'react';
 import './style.css'; 
+import { Link } from 'react-router-dom';
 import Card from '../../components/Card/Card';
+import casa2 from  "../../imgs/Casa2.png"
 import imgCasa from "../../imgs/casa1.png"
 import imgCard1 from  "../../imgs/Card1.png"
 import imgCard2 from  "../../imgs/Card2.png"
@@ -25,6 +27,7 @@ function HomePage() {
         </div>
       </div>
     </div>
+    <div>
     <h2 className="titles">Publicaciones</h2> 
     <div className="cards-container">
               <Card
@@ -47,7 +50,16 @@ function HomePage() {
         />
       </div>
       <div className="titles">
-        <a href="/ruta/a/otra/pagina" className="titles" style={{"fontSize":22}}>Ver más</a> {/* Enlace "Ver más" */}
+        <Link to="/publicaciones" className="titles" style={{"fontSize":22}}>Ver más</Link>    
+      </div>
+    </div>
+    <div className="green-section">
+        <img src={casa2} alt="Background" className="green-section-image" />
+        <div className="green-section-content">
+          <h2>Sobre la fundación:</h2>
+          <p>Establecida en el 2013, la Fundación Casa del indio se ha esforzado en crear un ambiente acogedor para recibir y apoyar a los pueblos originarios.  Establecida en Cartago Costa Rica, la fundación busca velar por los intereses de todos los pueblos originarios de Costa Rica.</p>
+          <button>Conocer más</button>
+        </div>
       </div>
     </div>
   );
