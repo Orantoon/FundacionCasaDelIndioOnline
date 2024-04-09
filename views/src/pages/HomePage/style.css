@@ -4,6 +4,22 @@
     justify-content: space-around;
     font-family: 'Arial', sans-serif; 
   }
+
+  .cards-container {
+    display: flex;
+    justify-content: space-evenly; /* Para distribuir las tarjetas horizontalmente */
+    align-items: flex-end; /* Para alinear las tarjetas en la parte superior */
+    flex-wrap: wrap; /* Para que las tarjetas se envuelvan si no caben en una sola fila */
+}
+
+.titles {
+  text-align: center;
+  margin-top: 50px; /* Espacio superior para separar el título del contenido */
+  margin-bottom: 20px; /* Espacio inferior para separar el título de las tarjetas */
+  font-size: 24px;
+  color: #333; 
+  font-family: 'Arial', sans-serif; 
+}
   
   .image-container img {
     width: 100%;
