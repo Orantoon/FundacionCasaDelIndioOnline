@@ -1,9 +1,9 @@
-Create database FCIO
+Create database FCIO;
 
 CREATE TABLE `FCIO`.`Fundation` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `vision` VARCHAR(200) NOT NULL,
-  `history` VARCHAR(500) NOT NULL,
+  `vision` VARCHAR(1000) NOT NULL,
+  `history` VARCHAR(10000) NOT NULL,
   `creation_date` DATE NOT NULL,
   `beds` INT NOT NULL,
   `available_beds` INT NULL,

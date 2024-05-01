@@ -1,0 +1,3 @@
+INSERT INTO Fundation (vision, history, creation_date, beds) VALUES ('La Casa del Indio es una Organización no gubernamental que se enfoca en brindarle hogar a indígenas de diferentes zonas del país para que estos tengan hogar en caso de que tengan que visitar Cartago o cercanìas, entre otros tipos de ayuda que se les puedes ofrecer a esta parte de la población.', 'Historia de la Fundacion', CURRENT_DATE(), 0);
+
+INSERT INTO User (fundation, name, email, password, isAdmin, details, newsletter, creation_date) VALUES (1, 'Prueba', 'prueba@gmail.com', 'prueba1234', 0, 'Usuario de prueba', 0, CURRENT_DATE());

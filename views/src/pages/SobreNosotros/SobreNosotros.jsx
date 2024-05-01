@@ -2,7 +2,7 @@ import React from 'react';
 import './style.css';
 import imgCasa from "../../imgs/banner.jpg"
 
-function SobreNosotros() {
+const SobreNosotros = ({fundacion}) => {
   return (
     <div> <img src={imgCasa} alt="Banner" className="full-width-banner" />
     <div className="sobre-nosotros">
@@ -19,8 +19,7 @@ function SobreNosotros() {
         </div>
         <div className="vision">
           <h2>Visión</h2>
-          <p> La Casa del Indio es una Organizaciòn no gubernamental que se enfoca en brindarle hogar a indìgenas de diferentes zonas del paìs para que estos tengan hogar en caso de que tengan que visitar Cartago o cercanìas, entre otros tipos de ayuda que se les puedes ofrecer a esta parte de la poblaciòn.
-           </p>
+          {fundacion && fundacion.vision && <p>{fundacion.vision}</p>}
         </div>
       </div>
     </div>
