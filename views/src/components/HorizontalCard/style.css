@@ -1,42 +1,36 @@
+/* HorizontalCard.css */
+
 .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
-    transition: box-shadow 0.3s ease;
-    width: 300px;
-    height: 470px;
-}
-
-.card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
-}
-
-.card-image {
+    display: flex; /* Use flexbox to arrange the image and content */
     width: 100%;
-    margin-bottom: 10px;
-}
-
-.card-content {
-    text-align: center;
-    color: #333;
-}
-
-.card-title {
-    text-decoration: none;
-    font-size: 20px;
-    margin-bottom: 5px;
-    font-family: 'Arial', sans-serif; 
-}
-
-.card-description {
-    text-decoration: none;
-    font-size: 16px;
-    color: #666;
-    font-family: 'Arial', sans-serif; 
-}
-
+    max-width: 75%;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    max-height: 300px;
+    margin-bottom: 50px; /* Space below each card */
+    margin-top: 50px; /* Space above each card */
+  }
+  
+  .card-image {
+    width: 20%; /* Adjust the width of the image as needed */
+    height: auto;
+    padding: 5px;
+  }
+  
+  .card-content {
+    flex: 1; /* The content should take up remaining space */
+    padding: 16px;
+  }
+  
+  .card-title {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .card-description {
+    margin: 8px 0;
+    font-size: 1rem;
+  }
+  
