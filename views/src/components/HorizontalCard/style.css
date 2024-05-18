@@ -2,8 +2,7 @@
 
 .card {
     display: flex; /* Use flexbox to arrange the image and content */
-    width: 100%;
-    max-width: 75%;
+    width: 1000px;
     margin: 0 auto;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -11,19 +10,24 @@
     max-height: 300px;
     margin-bottom: 50px; /* Space below each card */
     margin-top: 50px; /* Space above each card */
+    flex-direction: row;
+    
   }
   
   .card-image {
-    width: 20%; /* Adjust the width of the image as needed */
+    width: 25%; /* Adjust the width of the image as needed */
     height: auto;
-    padding: 5px;
+    padding: 15px;
   }
   
   .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align content to the left */
+    justify-content: flex-start;
     flex: 1; /* The content should take up remaining space */
-    padding: 16px;
+    padding: 5px 16px; /* Adjust padding to align with image top */
   }
-  
   .card-title {
     margin: 0;
     font-size: 1.2rem;
