@@ -29,12 +29,12 @@ const HorizontalCard = ({ image, title, description, link }) => {
 
   return (
     <Link to={link} style={{ textDecoration: 'none' }}>
-      <div className="card">
-        <div className="image-container">
+      <div className="horizontal-card">
+        <div className="horizontal-image-container">
           <img
             src={image[currentImageIndex]}
             alt={title}
-            className="card-image"
+            className="horizontal-card-image"
           />
           <div className="buttons-container">
           <button className="prev-button" onClick={handlePrevImage}>
