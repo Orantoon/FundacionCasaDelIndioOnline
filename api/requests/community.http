@@ -1,0 +1,33 @@
+@api = http://localhost:4000/api/community
+
+GET {{api}}
+
+###
+
+GET {{api}}/1
+
+###
+
+POST {{api}}
+Content-Type: application/json
+
+{
+    "name": "Comunidad de Prueba",
+    "text": "Esta es una comunidad de prueba creada con el API.",
+    "tribe": "Tribu de Prueba API"
+}
+
+###
+
+DELETE {{api}}/2
+
+###
+
+PATCH {{api}}/2
+Content-Type: application/json
+
+{
+    "name": "Comunidad de Prueba UPDATE",
+    "text": "Esta es una comunidad de prueba creada con el API con el UPDATE.",
+    "tribe": "Tribu de Prueba API UPDATE"
+}

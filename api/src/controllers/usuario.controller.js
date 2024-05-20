@@ -29,22 +29,21 @@ export const getUsuario = async (req, res) => {
 };
 
 export const postUsuario = async (req, res) => {
-    const {fundation, name, email, password, isAdmin, details, newsletter} = req.body
+    const {name, email, password, isAdmin, newsletter, fundation} = req.body
     const currentDate = new Date();
-    const creation_date = currentDate.toISOString().slice(0, 10)
+    const creationDateTime = currentDate.toISOString().slice(0, 10)
 
     try {
-        const [rows] = await pool.query('INSERT INTO User (fundation, name, email, password, isAdmin, details, newsletter, creation_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [fundation, name, email, password, isAdmin, details, newsletter, creation_date])
+        const [rows] = await pool.query('INSERT INTO User (name, email, password, isAdmin, newsletter, creationDateTime, fundation) VALUES (?, ?, ?, ?, ?, ?, ?)', [name, email, password, isAdmin, newsletter, creationDateTime, fundation])
         res.send({
             id: rows.insertId,
-            fundation,
             name,
             email,
             password,
             isAdmin,
-            details,
             newsletter,
-            creation_date
+            creationDateTime,
+            fundation
         })
     } catch (error) {
         return res.status(500).json({
@@ -55,12 +54,12 @@ export const postUsuario = async (req, res) => {
 
 export const updateUsuario = async (req, res) => {
     const { id } = req.params;
-    const { name, email, password, isAdmin, details, newsletter } = req.body;
+    const {name, email, password, isAdmin, newsletter} = req.body;
 
     try {
         const [result] = await pool.query(
-            'UPDATE User SET name = IFNULL(?, name), email = IFNULL(?, email), password = IFNULL(?, password), isAdmin = IFNULL(?, isAdmin), details = IFNULL(?, details), newsletter = IFNULL(?, newsletter) WHERE id = ?',
-            [name, email, password, isAdmin, details, newsletter, id]
+            'UPDATE User SET name = IFNULL(?, name), email = IFNULL(?, email), password = IFNULL(?, password), isAdmin = IFNULL(?, isAdmin), newsletter = IFNULL(?, newsletter) WHERE id = ?',
+            [name, email, password, isAdmin, newsletter, id]
         );
 
         if (result.affectedRows === 0) {

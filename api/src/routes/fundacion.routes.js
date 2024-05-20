@@ -5,7 +5,7 @@ const router = Router();
 
 // Usuario
 
-router.get('/fundacion/:id', getFundacion);
+router.get('/fundacion/:idioma', getFundacion);
 
 router.patch('/fundacion/:id', updateFundacion);
 

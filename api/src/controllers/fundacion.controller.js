@@ -2,7 +2,7 @@ import {pool} from '../db.js'
 
 export const getFundacion = async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM Fundation WHERE id = ?', [req.params.id]);
+        const [rows] = await pool.query('SELECT * FROM Fundation WHERE idioma = ?', [req.params.idioma]);
     
         if (rows.length <= 0) return res.status(404).json({
             message: 'Fundation not found'      
@@ -18,12 +18,12 @@ export const getFundacion = async (req, res) => {
 
 export const updateFundacion = async (req, res) => {
     const {id} = req.params;
-    const {vision, history} = req.body;
+    const {image, vision, mision, history, infoIdiomas} = req.body;
 
     try {
         const [result] = await pool.query(
-            'UPDATE Fundation SET vision = IFNULL(?, vision), history = IFNULL(?, history) WHERE id = ?',
-            [vision, history, id]
+            'UPDATE Fundation SET image = IFNULL(?, image), vision = IFNULL(?, vision), mision = IFNULL(?, mision), history = IFNULL(?, history), infoIdiomas = IFNULL(?, infoIdiomas) WHERE id = ?',
+            [image, vision, mision, history, infoIdiomas, id]
         );
 
         if (result.affectedRows === 0) return res.status(404).json({

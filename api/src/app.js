@@ -1,6 +1,13 @@
 import express from 'express'
-import usuarioRoutes from './routes/usuario.routes.js'
 import fundacionRoutes from './routes/fundacion.routes.js'
+import usuarioRoutes from './routes/usuario.routes.js'
+import postRoutes from './routes/post.routes.js'
+import commentRoutes from './routes/comment.routes.js'
+import communityRoutes from './routes/community.routes.js'
+import slideRoutes from './routes/slide.routes.js'
+import visitlogRoutes from './routes/visitlog.routes.js'
+import donationcampaignRoutes from './routes/donationcampaign.routes.js'
+import donationRoutes from './routes/donation.routes.js'
 
 const app = express();
 const cors = require('cors');
@@ -11,8 +18,15 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 // rutas
-app.use('/api', usuarioRoutes);
 app.use('/api', fundacionRoutes);
+app.use('/api', usuarioRoutes);
+app.use('/api', postRoutes);
+app.use('/api', commentRoutes);
+app.use('/api', communityRoutes);
+app.use('/api', slideRoutes);
+app.use('/api', visitlogRoutes);
+app.use('/api', donationcampaignRoutes);
+app.use('/api', donationRoutes);
 
 
 app.use((req, res, next) => {

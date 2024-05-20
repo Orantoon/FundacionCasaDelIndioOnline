@@ -12,30 +12,27 @@ POST {{api}}
 Content-Type: application/json
 
 {
-    "fundation": 1,
     "name": "Nuevo Usuario",
     "email": "nuevousuario@gmail.com",
     "password": "nuevousuario1234",
     "isAdmin": 0,
-    "details": "Nuevo Usuario creado desde los Request de prueba",
-    "newsletter": 0
+    "newsletter": 0,
+    "fundation": 1
 }
 
 ###
 
-DELETE {{api}}/2
+DELETE {{api}}/3
 
 ###
 
-PATCH {{api}}/2
+PATCH {{api}}/3
 Content-Type: application/json
 
 {
-    "fundation": 1,
     "name": "Nuevo Usuario UPDATE",
     "email": "nuevousuarioUPDATE@gmail.com",
     "password": "nuevousuarioUPDATE1234",
     "isAdmin": 1,
-    "details": "Nuevo Usuario creado desde los Request de prueba, UPDATE",
     "newsletter": 1
 }
