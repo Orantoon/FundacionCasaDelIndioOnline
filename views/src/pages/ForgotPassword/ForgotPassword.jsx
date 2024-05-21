@@ -9,7 +9,7 @@ function ForgotPassword() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí podrías manejar el envío del correo electrónico
+    // Logica del envío de correo electrónico
     setIsSubmitted(true);
   };
 
