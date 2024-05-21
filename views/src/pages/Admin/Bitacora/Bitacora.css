@@ -1,0 +1,53 @@
+.bitacora-options-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra horizontalmente */
+    height: 100vh;
+    background-color: #0f0e21;
+    background: url('../../../imgs/Card4.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .bitacora-options {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo negro con opacidad */
+    border-radius: 10px; /* Ajusta el radio del borde */
+    box-shadow: 0 0.9rem 1.7rem rgba(0, 0, 0, 0.25),
+      0 0.7rem 0.7rem rgba(0, 0, 0, 0.22);
+    max-width: 400px; /* Ajustar el ancho */
+    padding: 2rem;
+    text-align: center;
+    width: 100%;
+    color: white; /* Texto en blanco */
+  }
+  
+  .bitacora-options .btn {
+    background-color: #333; /* Fondo negro para el botón */
+    border-radius: 20px;
+    border: 1px solid #333; /* Borde negro */
+    color: var(--white);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+    padding: 0.9rem 4rem;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    margin-top: 1rem;
+    display: block; /* Asegura que cada botón esté en su propia línea */
+    width: 100%; /* Asegura que los botones ocupen el mismo ancho */
+    max-width: 250px; /* Define un ancho máximo para los botones */
+    margin-left: auto; /* Centra el botón horizontalmente */
+    margin-right: auto; /* Centra el botón horizontalmente */
+  }
+  
+  .bitacora-options .btn:active {
+    transform: scale(0.95);
+  }
+  
+  .bitacora-options .btn:focus {
+    outline: none;
+  }
+  

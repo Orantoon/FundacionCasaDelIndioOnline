@@ -1,0 +1,128 @@
+.view-bitacora-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #0f0e21;
+    background: url('../../../imgs/Card4.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 1rem;
+  }
+  
+  .view-bitacora-table {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo negro con opacidad */
+    border-radius: 10px;
+    box-shadow: 0 0.9rem 1.7rem rgba(0, 0, 0, 0.25),
+      0 0.7rem 0.7rem rgba(0, 0, 0, 0.22);
+    max-width: 800px; /* Ajustar el ancho */
+    padding: 2rem;
+    width: 100%;
+    color: white; /* Texto en blanco */
+  }
+  
+  .table__title {
+    font-weight: 300;
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+  }
+  
+  .entry-details {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+  
+  .entry-details h3 {
+    margin-top: 0;
+  }
+  
+  .entry-details p {
+    margin: 0.5rem 0;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+  .pagination button {
+    background-color: #333;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 80ms ease-in;
+    border-radius: 5px;
+  }
+  
+  .pagination button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+  }
+  
+  .pagination span {
+    color: white;
+  }
+  
+  .btn-back {
+    background-color: #333;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 80ms ease-in;
+    border-radius: 5px;
+    margin-top: 1rem;
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto; /* Centrando el botón */
+  }
+  
+  .btn {
+    background-color: #333;
+    border-radius: 20px;
+    border: 1px solid #333;
+    color: var(--white);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+    padding: 0.9rem 4rem;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    margin-top: 1rem;
+  }
+  
+  .btn:active {
+    transform: scale(0.95);
+  }
+  
+  .btn:focus {
+    outline: none;
+  }
+  
