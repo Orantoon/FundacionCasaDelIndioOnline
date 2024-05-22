@@ -1,5 +1,6 @@
 import React from 'react';
 import Carousel from '../../components/Carousel/Carousel.jsx';
+import HorizontalCard from '../../components/HorizontalCard/HorizontalCard.jsx';
 import casa2 from  "../../imgs/Casa2.png"
 import imgCasa from "../../imgs/casa1.png"
 import imgCard1 from  "../../imgs/Card1.png"
@@ -68,7 +69,7 @@ const Comunidades = () => {
   return (
     <div className="screen">
       <div className="card-container">
-        <Carousel cards={cards} />
+      <Carousel cards={cards} CardComponent={HorizontalCard} />
       </div>
     </div>
   );
