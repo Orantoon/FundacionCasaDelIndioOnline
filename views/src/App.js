@@ -4,6 +4,7 @@ import Footer from './components/Footer/Footer';
 import HomePage from './pages/HomePage/HomePage';
 import SobreNosotros from './pages/SobreNosotros/SobreNosotros';
 import Comunidades from './pages/Comunidades/Comunidades';
+import Publicaciones from './pages/Publicaciones/Publicaciones';
 import IniciarSesion from './pages/Login/Login';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import Bitacora from './pages/Admin/Bitacora/Bitacora';
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/sobre-nosotros" element={<SobreNosotros />} />
         <Route path="/comunidades" element={<Comunidades />} />
+        <Route path="/publicaciones" element={<Publicaciones />} />
         <Route path="/iniciar-sesion" element={<IniciarSesion />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/bitacora-options" element={<Bitacora/>} />
