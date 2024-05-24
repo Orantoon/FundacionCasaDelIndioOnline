@@ -14,7 +14,6 @@ function Header() {
       </div>
       <nav className="navigation">
         <Link to="/sobre-nosotros">Sobre nosotros</Link>
-        <Link to="/camas">Camas</Link>
         <Link to="/publicaciones">Publicaciones</Link>
         <Link to="/donaciones">Donaciones</Link>
         <Link to="/comunidades">Comunidades</Link>

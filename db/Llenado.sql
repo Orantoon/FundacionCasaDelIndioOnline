@@ -18,13 +18,25 @@ INSERT INTO Comment (user, post, text, creationDateTime) VALUES (1, 1, 'Muy buen
 SELECT * FROM Comment;
 
 -- Community
-INSERT INTO Community (name, text, tribe) VALUES ('Comunidad Prueba', 'Esta es una comunidad de prueba.', 'Tribu de Prueba');
+INSERT INTO Community (name, text, tribe) VALUES ('Comunidad Prueba 1', 'Esta es una comunidad de prueba 1.', 'Tribu de Prueba');
+INSERT INTO Community (name, text, tribe) VALUES ('Comunidad Prueba 2', 'Esta es una comunidad de prueba 2.', 'Tribu de Prueba');
+INSERT INTO Community (name, text, tribe) VALUES ('Comunidad Prueba 3', 'Esta es una comunidad de prueba 3.', 'Tribu de Prueba');
+INSERT INTO Community (name, text, tribe) VALUES ('Comunidad Prueba 4', 'Esta es una comunidad de prueba 4.', 'Tribu de Prueba');
+INSERT INTO Community (name, text, tribe) VALUES ('Comunidad Prueba 5', 'Esta es una comunidad de prueba 5.', 'Tribu de Prueba');
 SELECT * FROM Community;
 
 -- Slide
-INSERT INTO Slide (community, image) VALUES (1, 'imgs/pruebaSlide1.jpg');
-INSERT INTO Slide (community, image) VALUES (1, 'imgs/pruebaSlide2.jpg');
-INSERT INTO Slide (community, image) VALUES (1, 'imgs/pruebaSlide3.jpg');
+INSERT INTO Slide (community, image) VALUES (1, './Casa2.png');
+INSERT INTO Slide (community, image) VALUES (1, './Card1.png');
+INSERT INTO Slide (community, image) VALUES (1, './casa1.png');
+
+INSERT INTO Slide (community, image) VALUES (2, './casa1.png');
+INSERT INTO Slide (community, image) VALUES (2, './Card1.png');
+
+INSERT INTO Slide (community, image) VALUES (3, './Card1.png');
+INSERT INTO Slide (community, image) VALUES (3, './casa1.png');
+
+INSERT INTO Slide (community, image) VALUES (4, './Card2.png');
 SELECT * FROM Slide;
 
 -- Visitlog

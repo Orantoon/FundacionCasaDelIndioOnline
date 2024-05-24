@@ -1,11 +1,11 @@
 import {Router} from 'express'
-import {getSlide, postSlide, deleteSlide} from '../controllers/slide.controller.js'
+import {getSlides, postSlide, deleteSlide} from '../controllers/slide.controller.js'
 
 const router = Router();
 
 // Usuario
 
-router.get('/slide/:community', getSlide);
+router.get('/slide/', getSlides);
 
 router.post('/slide', postSlide);
 

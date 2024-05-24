@@ -1,10 +1,13 @@
-import React from 'react';
 import './style.css';
+import { useFetch } from '../../useFetch';
 
-const SobreNosotros = ({fundacion, images}) => {
+const SobreNosotros = ({images}) => {
+
+  // GET Fundacion
+  const {variable: fundacion} = useFetch('http://localhost:4000/api/fundacion/0');
 
   return (
-    <div> 
+    <div>
       {fundacion && fundacion.image && <img src={images(fundacion.image)} alt="Casa" className="full-width-banner" />}
       <div className="sobre-nosotros">
         <h1>¿Qué es la Fundación La Casa del Indio?</h1>
