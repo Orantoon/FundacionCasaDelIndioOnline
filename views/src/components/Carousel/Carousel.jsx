@@ -29,7 +29,7 @@ const Carousel = ({cards, images}) => {
       <div className="carousel-container">
         <div className="carousel">
           {cards && slides && cards.slice(currentCard, currentCard + 3).map((card, index) => {
-            // Filtrar slides por el valor de "community" correcto
+            // Filtra slides por el valor de "community" correcto
             const cardCommunity = currentCard + index + 1;
             const filteredSlides = slides ? slides.filter(slide => slide.community === cardCommunity) : [];
   
