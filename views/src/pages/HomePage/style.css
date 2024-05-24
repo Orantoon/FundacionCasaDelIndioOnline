@@ -4,6 +4,22 @@
     justify-content: space-around;
     font-family: 'Arial', sans-serif; 
   }
+
+  .cards-container {
+    display: flex;
+    justify-content: space-evenly; /* Para distribuir las tarjetas horizontalmente */
+    align-items: flex-end; /* Para alinear las tarjetas en la parte superior */
+    flex-wrap: wrap; /* Para que las tarjetas se envuelvan si no caben en una sola fila */
+}
+
+.titles {
+  text-align: center;
+  margin-top: 50px; /* Espacio superior para separar el título del contenido */
+  margin-bottom: 20px; /* Espacio inferior para separar el título de las tarjetas */
+  font-size: 24px;
+  color: #333; 
+  font-family: 'Arial', sans-serif; 
+}
   
   .image-container img {
     width: 100%;
@@ -42,11 +58,12 @@
     border: 2px solid#004225;
     font-family: 'Arial', sans-serif; 
     
+    
 }
   
  
   .buttons-container button:first-child {
-    background-color: transparent; /* Fondo transparente */
+    background-color: white; /* Fondo transparente */
     color: #004225; /* Color del texto */
   }
   
@@ -67,3 +84,101 @@
     background-color:#ffffff; 
     color:#004225; 
   }
+
+
+  .green-section {
+    background-color:#004225; 
+    background-size: cover;
+    background-position: center;
+    padding: 50px 0;
+    display: flex;
+    margin-top: 50px; 
+    height: 300px;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif; 
+  }
+  
+  .green-section-image {
+    width: 30%;
+    margin-left: 200px;
+  }
+  
+  .green-section-content {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 20px; 
+    margin-left: 50px;
+    border-left: 1px solid #ccc; 
+    padding-right: 0px; 
+    padding-left: 25px ;
+  }
+  
+  .green-section-content h2 {
+    font-size: 22px; 
+    margin-bottom: 10px;
+    
+  }
+  
+  .green-section-content p {
+    width: 50%;
+    margin-bottom: 20px;
+
+  }
+  
+  .green-section-content button {
+    background-color: #ba7a39;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold; 
+    font-family: 'Arial', sans-serif; 
+  }
+
+  .white-section {
+    background-color: #fff; /* Fondo blanco */
+    padding: 50px 0;
+    color: #333; 
+    font-family: 'Arial', sans-serif; 
+  }
+  
+  .horizontal-line {
+    border: 0;
+    border-top: 1px solid #000; /* Línea horizontal negra */
+    width: 75%;
+    margin: 0 auto; /* Centra horizontalmente la línea */
+  }
+  
+  .white-section-content {
+    text-align: center; /* Centra horizontalmente el contenido */
+    max-width: 800px; /* Ancho máximo del contenido */
+    margin: 0 auto; /* Centra horizontalmente el contenido */
+  }
+  
+  .white-section-content h2 {
+    padding-top: 40px; /* Espaciado superior */
+  }
+  
+  .white-section-content p {
+    width: 60%; /* Ancho del texto */
+    margin: 20px auto; /* Espaciado alrededor del texto y lo centra horizontalmente */
+  }
+  
+  .white-section-content button {
+    display: block; /* Para que el botón ocupe todo el ancho disponible */
+    margin: 20px auto; 
+    background-color: #ba7a39;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold; 
+    font-family: 'Arial', sans-serif; 
+    margin-bottom: 50px;
+  }
+  

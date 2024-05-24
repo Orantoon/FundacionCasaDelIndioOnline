@@ -17,7 +17,8 @@ function Header() {
         <Link to="/camas">Camas</Link>
         <Link to="/publicaciones">Publicaciones</Link>
         <Link to="/donaciones">Donaciones</Link>
-        <Link to="/iniciar-sesion">Iniciar Sesión</Link>
+        <Link to="/comunidades">Comunidades</Link>
+        <Link to="/iniciar-sesion">Iniciar Sesión</Link>    
       </nav>
     </header>
   );
