@@ -1,12 +1,11 @@
-import { Link } from 'react-router-dom';
 import './style.css';
 import HorizontalCard from '../HorizontalCard/HorizontalCard';
 import React, { useState } from 'react';
-import { useFetch } from '../../useFetch';
+import { useGet } from '../../useGet';
 
 const Carousel = ({cards, images}) => {
     // GET Slides
-    const {variable: slides} = useFetch('http://localhost:4000/api/slide');
+    const {variable: slides} = useGet('http://localhost:4000/api/slide');
     
     const [currentCard, setCurrentCard] = useState(0);
   

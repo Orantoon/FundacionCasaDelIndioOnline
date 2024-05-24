@@ -1,10 +1,10 @@
 import './style.css';
-import { useFetch } from '../../useFetch';
+import { useGet } from '../../useGet';
 
 const SobreNosotros = ({images}) => {
 
   // GET Fundacion
-  const {variable: fundacion} = useFetch('http://localhost:4000/api/fundacion/0');
+  const {variable: fundacion} = useGet('http://localhost:4000/api/fundacion/0');
 
   return (
     <div>

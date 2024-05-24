@@ -14,7 +14,7 @@
     width: 100%;
   }
   
-  .buttons-container {
-    margin-top: 20px; /* Adjust the margin as needed */
+  .buttons-container button {
+    margin-bottom: 20px;
   }
   

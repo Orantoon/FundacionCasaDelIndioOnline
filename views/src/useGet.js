@@ -1,6 +1,6 @@
 import React from "react";
 
-export function useFetch(url){
+export function useGet(url){
     const [variable, setVariable] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
 

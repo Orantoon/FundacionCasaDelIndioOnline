@@ -18,7 +18,7 @@ const HorizontalCard = ({ link, name, text, tribe, slides, images}) => {
   // Check if images array is empty or undefined
   if (!slides || slides.length === 0) {
     return (
-      <div className="card">
+      <div className="horizontal-card">
         <div className="card-content">
           <h2 className="card-name">{name}</h2>
           <p className="card-text">{text}</p>

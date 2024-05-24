@@ -1,14 +1,14 @@
 import React from 'react';
 import Carousel from '../../components/Carousel/Carousel.jsx';
-import { useFetch } from '../../useFetch';
+import { useGet } from '../../useGet';
 
 const Comunidades = ({images}) => {
   // GET Comunidades
-  const {variable: comunidades} = useFetch('http://localhost:4000/api/community');
+  const {variable: comunidades} = useGet('http://localhost:4000/api/community');
 
   return (
-    <div className="screen">
-      <div className="card-container">
+    <div className="comunidades">
+      <div className="comunidades-cards">
         <Carousel cards={comunidades} images={images} />
       </div>
     </div>
