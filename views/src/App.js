@@ -15,6 +15,7 @@ import UserDetails from './pages/Admin/GestionUsuarios/UserDetails';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './pages/Admin/GestionRoles/AuthContext';
 import AdminLogin from './pages/Login/Simulation/AdminLogin';
+import CrearPublicaciones from './pages/Publicaciones/CrearPublicaciones/CreatePublicacion';
 import './App.css';
 
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/gestion-usuarios" element={<UserManagement />} /> 
         <Route path="/gestion-usuarios/:userId" element={<UserDetails />}/>
         <Route path="/admin-login" element={<AdminLogin />} /> {/* Ruta para simular el inicio de sesión del administrador */}
+        <Route path="/crear-publicacion" element={<CrearPublicaciones />}/>
         </Routes>
         <Footer />
       </Router>
