@@ -4,8 +4,13 @@ import Footer from './components/Footer/Footer';
 import HomePage from './pages/HomePage/HomePage';
 import SobreNosotros from './pages/SobreNosotros/SobreNosotros';
 import Comunidades from './pages/Comunidades/Comunidades';
+import Publicaciones from './pages/Publicaciones/Publicaciones';
 import Idiomas from './pages/Idiomas/Idiomas';
 import Login from './pages/Login/Login';
+import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
+import Bitacora from './pages/Admin/Bitacora/Bitacora';
+import AddBitacora from './pages/Admin/Bitacora/AddBitacora';
+import ViewBitacora from './pages/Admin/Bitacora/ViewBitacora';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 
@@ -46,11 +51,15 @@ function App() {
         <Route path="/comunidades" element={<Comunidades images={images}/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/idiomas" element={<Idiomas images={images}/>} />
+        <Route path="/publicaciones" element={<Publicaciones images={images}/>} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/bitacora-options" element={<Bitacora/>} />
+        <Route path="/add-bitacora" element={<AddBitacora />} />
+        <Route path="/view-bitacora" element={<ViewBitacora />} />
       </Routes>
       <Footer />
     </Router>
   );
 }
-
 
 export default App;

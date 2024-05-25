@@ -12,7 +12,7 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
-  max-height: 400px;
+  max-height: 450px;
   margin-bottom: 50px; /* Space below each card */
   margin-top: 50px; /* Space above each card */
   flex-direction: row;

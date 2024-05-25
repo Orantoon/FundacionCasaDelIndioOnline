@@ -31,31 +31,35 @@ const HorizontalCard = ({ link, name, text, tribe, slides, images}) => {
 
   return (
     <Link to={link} style={{ textDecoration: 'none' }}>
-      {slides && <div className="horizontal-card">
-        <div className="horizontal-image-container">
-        {slides && <img
-            src={images(slides[currentImageIndex].image)}
-            alt={name}
-            className="horizontal-card-image"
-          />}
-          <div className="buttons-container">
-          <button className="prev-button" onClick={handlePrevImage}>
-            &lt;
-          </button>
-          <button className="next-button" onClick={handleNextImage}>
-            &gt;
-          </button>
+      {slides && slides[currentImageIndex] && (
+        <div className="horizontal-card">
+          <div className="horizontal-image-container">
+            {slides && slides[currentImageIndex] && (
+              <img
+                src={images(slides[currentImageIndex].image)}
+                alt={name}
+                className="horizontal-card-image"
+              />
+            )}
+            <div className="buttons-container">
+              <button className="prev-button" onClick={handlePrevImage}>
+                &lt;
+              </button>
+              <button className="next-button" onClick={handleNextImage}>
+                &gt;
+              </button>
+            </div>
+          </div>
+          <div className="card-content">
+            <h2 className="card-name">{name}</h2>
+            <p className="card-text">{text}</p>
+            <h4>Tribu:</h4>
+            <p className="card-tribe">{tribe}</p>
           </div>
         </div>
-        <div className="card-content">
-          <h2 className="card-name">{name}</h2>
-          <p className="card-text">{text}</p>
-          <h4>Tribu:</h4>
-          <p className="card-tribe">{tribe}</p>
-        </div>
-      </div>}
+      )}
     </Link>
-  );
+  );  
 };
 
 export default HorizontalCard;

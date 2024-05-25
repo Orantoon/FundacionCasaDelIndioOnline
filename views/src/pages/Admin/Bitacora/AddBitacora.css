@@ -1,0 +1,82 @@
+.add-bitacora-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #0f0e21;
+  background: url('../../../imgs/Card4.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 1rem;
+}
+
+.add-bitacora-form {
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo negro con opacidad */
+  border-radius: 10px; /* Ajusta el radio del borde */
+  box-shadow: 0 0.9rem 1.7rem rgba(0, 0, 0, 0.25),
+    0 0.7rem 0.7rem rgba(0, 0, 0, 0.22);
+  max-width: 400px; /* Ajustar el ancho */
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+  color: white; /* Texto en blanco */
+}
+
+.add-bitacora-form .form__title {
+  font-weight: 300;
+  margin: 0 0 1.25rem 0;
+}
+
+.add-bitacora-form .input {
+  background-color: #fff;
+  border: none;
+  padding: 0.9rem 0.9rem;
+  margin: 0.5rem 0;
+  width: calc(100% - 1.8rem); /* Ajusta el ancho para el padding */
+  box-sizing: border-box; /* Incluye el padding en el cálculo del ancho */
+}
+
+.add-bitacora-form textarea.input {
+  height: 100px; /* Ajustar la altura del textarea */
+}
+
+.add-bitacora-form .btn {
+  background-color: #333; /* Fondo negro para el botón */
+  border-radius: 20px;
+  border: 1px solid #333; /* Borde negro */
+  color: var(--white);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  padding: 0.9rem 4rem;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+  margin-top: 1rem;
+}
+
+.add-bitacora-form .btn:active {
+  transform: scale(0.95);
+}
+
+.add-bitacora-form .btn:focus {
+  outline: none;
+}
+
+.add-bitacora-form .btn-back {
+  background-color: #333;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 80ms ease-in;
+  border-radius: 5px;
+  margin-top: 1rem;
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto; /* Centrando el botón */
+}
