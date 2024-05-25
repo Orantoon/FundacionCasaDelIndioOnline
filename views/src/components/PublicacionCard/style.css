@@ -1,93 +1,67 @@
-/* publicacionCard.css */
-
-.publicacion-card {
-  display: flex;
-  align-items: center;
-  padding: 5px;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
-  transition: box-shadow 0.3s ease;
-  height: 470px;
-  width: 1000px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+.pub-card {
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
   overflow: hidden;
-  max-height: 400px;
-  margin-bottom: 50px; /* Space below each card */
-  margin-top: 50px; /* Space above each card */
-  flex-direction: row;
-  
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.publicacion-image-container{
-  display: flex;
-  width: 400px; /* Adjust the width of the image as needed */
-  min-width: 400px;
-  max-width: 400px;
-  height: 350px;
-  max-height: 350px;
-  min-height: 350px;
-  border-radius: 0;
-  flex-direction: column;
-  align-items: center;
-  padding-left: 15px;
+.pub-image-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
 }
 
-.publicacion-card-image {
-  display: flex;
-  width: 400px; /* Adjust the width of the image as needed */
-  min-width: 400px;
-  max-width: 400px;
-  height: 330px;
-  max-height: 330px;
-  min-height: 330px;
-  border-radius: 0;
-}
-.publicacion-buttons-container{
-  padding: 0px;
-  margin: 0px;
-  display: flex;
-  flex-direction: row;
-  padding-top: 10px;
+.pub-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.publicacion-card-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align content to the left */
-  justify-content: flex-start;
-  flex: 1; /* The content should take up remaining space */
-  padding: 5px 16px; /* Adjust padding to align with image top */
-}
-.publicacion-card-title {
-  margin: 0;
-  font-size: 1.2rem;
+.pub-nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
 }
 
-.publicacion-card-description {
-  margin: 8px 0;
-  font-size: 1rem;
+.pub-nav-button.left {
+  left: 10px;
 }
 
-.publicacion-prev-button,
-.publicacion-next-button {
-    border: 2px solid #000000; /* Adjust border size and color */
-    border-radius: 50%; /* Make the button circular */
-    width: 30px; /* Set the button width */
-    height: 30px; /* Set the button height */
-    font-size: 20px; /* Adjust font size for arrows */
-    background-color: transparent; /* Set background color as transparent */
-    cursor: pointer; /* Change cursor to pointer on hover */
-    display: flex; /* Use flexbox to center the arrow publicacionly and vertically */
-    justify-content: center;
-    align-items: center;
-    align-self: center;
+.pub-nav-button.right {
+  right: 10px;
 }
 
-.publicacion-prev-button:hover,
-.publicacion-next-button:hover {
-    background-color: #eee; /* Change background color on hover */
+.pub-card-content {
+  padding: 15px;
+  text-align: center;
 }
 
+.pub-card-content h2 {
+  margin: 10px 0;
+  font-size: 1.5em;
+}
 
+.pub-card-content p {
+  margin: 10px 0;
+  color: #555;
+}
 
+.pub-see-more-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pub-see-more-button:hover {
+  background-color: #0056b3;
+}
