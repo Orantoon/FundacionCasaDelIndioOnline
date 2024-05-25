@@ -1,12 +1,61 @@
 .screen {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
+  padding: 20px;
+  min-height: 100vh; /* Asegura que la pantalla ocupe toda la altura disponible */
+  box-sizing: border-box; /* Incluye padding en el cálculo de altura */
+  background-color: #f9f9f9; /* Fondo para que sea más visible */
 }
 
 .card-container {
-  width: 75%;
+  width: 100%;
+  max-width: 800px; /* Limita el ancho máximo */
   display: flex;
-  justify-content: space-between; /* Adjust spacing between cards */
+  flex-direction: column;
+  gap: 40px; /* Espaciado entre tarjetas */
+  padding: 20px;
+  box-sizing: border-box; /* Incluye padding en el cálculo de ancho */
+}
+
+.card {
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* Asegura que las tarjetas ocupen todo el ancho del contenedor */
+}
+
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+.load-more-container {
+  margin-top: 20px;
+}
+
+.load-more-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.load-more-button:hover {
+  background-color: #0056b3;
 }

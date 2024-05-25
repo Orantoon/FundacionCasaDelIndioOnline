@@ -1,0 +1,42 @@
+.crear-publicacion {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.crear-publicacion h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.crear-publicacion form {
+  display: flex;
+  flex-direction: column;
+}
+
+.crear-publicacion label {
+  margin-bottom: 10px;
+}
+
+.crear-publicacion input,
+.crear-publicacion textarea {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.crear-publicacion button {
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.crear-publicacion button:hover {
+  background-color: #555;
+}

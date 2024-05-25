@@ -13,13 +13,17 @@ import ViewBitacora from './pages/Admin/Bitacora/ViewBitacora';
 import UserManagement from './pages/Admin/GestionUsuarios/UserManagement';
 import UserDetails from './pages/Admin/GestionUsuarios/UserDetails';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './pages/Admin/GestionRoles/AuthContext';
+import AdminLogin from './pages/Login/Simulation/AdminLogin';
 import './App.css';
+
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <Routes>
+    <AuthProvider>
+      <Router>
+        <Header />
+        <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/sobre-nosotros" element={<SobreNosotros />} />
         <Route path="/comunidades" element={<Comunidades />} />
@@ -31,10 +35,13 @@ function App() {
         <Route path="/view-bitacora" element={<ViewBitacora />} />
         <Route path="/gestion-usuarios" element={<UserManagement />} /> 
         <Route path="/gestion-usuarios/:userId" element={<UserDetails />}/>
-      </Routes>
-      <Footer />
-    </Router>
+        <Route path="/admin-login" element={<AdminLogin />} /> {/* Ruta para simular el inicio de sesión del administrador */}
+        </Routes>
+        <Footer />
+      </Router>
+    </AuthProvider>
   );
 }
+
 
 export default App;
