@@ -1,56 +1,45 @@
 import React, { useState } from 'react';
-import './style.css'; // Asegúrate de importar el archivo CSS
-import Modal from '../Modal/Modal.jsx';
+import './style.css';
+import Modal from '../Modal/Modal';
 
-const PublicacionCard = ({ card }) => {
+const PublicacionCard = ({ card, isAdmin }) => {
   const { images = [], title, description } = card;
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const nextImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
-  const truncatedDescription = description.length > 50 
-    ? `${description.substring(0, 100)}...` 
-    : description;
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
 
   return (
     <>
-      <div className="pub-card" onClick={openModal}>
+      <div className="pub-card">
         <div className="pub-image-container">
-          <button className="pub-nav-button left" onClick={(e) => { e.stopPropagation(); prevImage(); }}>◄</button>
-          <img src={images[currentImageIndex]} alt="Card" className="pub-image"/>
-          <button className="pub-nav-button right" onClick={(e) => { e.stopPropagation(); nextImage(); }}>►</button>
+          <button className="nav-button left" onClick={prevImage}>‹</button>
+          <img src={images[currentImageIndex]} alt="Card" className="pub-image" />
+          <button className="nav-button right" onClick={nextImage}>›</button>
         </div>
         <div className="pub-card-content">
           <h2>{title}</h2>
-          <p>{truncatedDescription}</p>
-          <button className="pub-see-more-button" onClick={(e) => { e.stopPropagation(); openModal(); }}>Ver más</button>
+          <p>{description.length > 50 ? `${description.substring(0, 100)}...` : description}</p>
+          <button className="pub-see-more-button" onClick={openModal}>Ver más</button>
         </div>
       </div>
-      <Modal 
-        isOpen={isModalOpen} 
-        onClose={closeModal} 
-        images={images} 
-        title={title} 
-        description={description} 
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        images={images}
+        title={title}
+        description={description}
+        isAdmin={isAdmin}
+        cardId={card.id}
       />
     </>
   );

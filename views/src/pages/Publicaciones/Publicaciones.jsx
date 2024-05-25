@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useAuth } from '../Admin/GestionRoles/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import PublicacionCard from '../../components/PublicacionCard/PublicacionCard.jsx';
 import casa2 from "../../imgs/Casa2.png";
 import imgCasa from "../../imgs/casa1.png";
 import imgCard1 from "../../imgs/Card1.png";
 import imgCard2 from "../../imgs/Card2.png";
 import imgCard3 from "../../imgs/Card3.jpg";
+import PublicacionCard from '../../components/PublicacionCard/PublicacionCard';
 import './style.css';
 
 const Publicaciones = () => {
@@ -16,10 +16,6 @@ const Publicaciones = () => {
 
   const handleCreatePost = () => {
     navigate('/crear-publicacion');
-  };
-
-  const handleViewDetail = (id) => {
-    navigate(`/publicaciones/${id}`);
   };
 
   const handleLoadMore = () => {
@@ -90,9 +86,11 @@ const Publicaciones = () => {
       )}
       <div className="card-container">
         {cards.slice(0, visibleCards).map(card => (
-          <div key={card.id} className="card">
-            <PublicacionCard card={card} onClick={() => handleViewDetail(card.id)} />
-          </div>
+          <PublicacionCard
+            key={card.id}
+            card={card}
+            isAdmin={user && user.role === 'Admin'}
+          />
         ))}
       </div>
       {visibleCards < cards.length && (

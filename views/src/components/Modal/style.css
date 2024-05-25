@@ -2,9 +2,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,17 +12,13 @@
 }
 
 .modal-content {
-  background: white;
+  background-color: white;
   padding: 20px;
-  border-radius: 10px;
-  max-width: 900px; /* Increase the max-width */
+  border-radius: 8px;
+  max-width: 800px;
   width: 90%;
-  height: 80%; /* Decrease the height */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: relative;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start; /* Align content at the start */
 }
 
 .close-button {
@@ -36,28 +32,128 @@
 }
 
 .modal-images {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60%; /* Adjust the height for images */
-  overflow: hidden;
   position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
 .modal-image {
-  width: auto;
-  height: 90%; /* Adjust the image size */
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.nav-button.left {
+  left: 10px;
+}
+
+.nav-button.right {
+  right: 10px;
+}
+
 .modal-content h2 {
-  margin: 0px; /* Reduce bottom margin */
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .modal-content p {
-  margin: 0 0 20px; /* Reduce top margin and add bottom margin */
-  overflow-y: auto; /* Allow vertical scrolling if the description is long */
-  max-height: 30%; /* Ensure the description doesn't take over the entire modal */
-  padding: 0 10px; /* Add some padding for better readability */
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+}
+
+.modal-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-edit label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.modal-edit input,
+.modal-edit textarea {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+}
+
+.modal-edit input[type="file"] {
+  padding: 3px;
+}
+
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.image-container {
+  position: relative;
+}
+
+.image-preview img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.remove-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: rgba(255, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+form button,
+.modal-edit button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form button:hover,
+.modal-edit button:hover {
+  background-color: #0056b3;
 }
