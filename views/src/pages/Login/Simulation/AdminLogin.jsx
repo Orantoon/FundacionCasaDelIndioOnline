@@ -12,7 +12,7 @@ const AdminLogin = () => {
       role: 'Admin',
     };
     login(adminUser);
-    navigate('/publicaciones'); // Redirige a la página de publicaciones
+    navigate('/'); // Redirige a la página principal
   };
 
   return (
