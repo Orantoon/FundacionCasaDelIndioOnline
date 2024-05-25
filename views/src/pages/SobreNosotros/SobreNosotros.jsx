@@ -2,9 +2,10 @@ import './style.css';
 import { useGet } from '../../useGet';
 
 const SobreNosotros = ({images}) => {
-
+  const idioma = sessionStorage.getItem('idioma');
+  const url = 'http://localhost:4000/api/fundacion/' + idioma;
   // GET Fundacion
-  const {variable: fundacion} = useGet('http://localhost:4000/api/fundacion/0');
+  const {variable: fundacion} = useGet(url);
 
   return (
     <div>

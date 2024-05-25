@@ -1,6 +1,6 @@
 import React from "react";
 
-export function useGet(url){
+export function useGet(url) {
     const [variable, setVariable] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
 
@@ -10,7 +10,7 @@ export function useGet(url){
             .then((response) => response.json())
             .then((data) => setVariable(data))
             .finally(() => setLoading(false));
-        }, []);
+    }, [url]); 
 
-    return {variable, loading};
+    return { variable, loading };
 }

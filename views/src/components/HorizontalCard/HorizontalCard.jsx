@@ -22,6 +22,7 @@ const HorizontalCard = ({ link, name, text, tribe, slides, images}) => {
         <div className="card-content">
           <h2 className="card-name">{name}</h2>
           <p className="card-text">{text}</p>
+          <h4>Tribu:</h4>
           <p className="card-tribe">{tribe}</p>
         </div>
       </div>
@@ -30,13 +31,13 @@ const HorizontalCard = ({ link, name, text, tribe, slides, images}) => {
 
   return (
     <Link to={link} style={{ textDecoration: 'none' }}>
-      {slides &&<div className="horizontal-card">
+      {slides && <div className="horizontal-card">
         <div className="horizontal-image-container">
-          <img
+        {slides && <img
             src={images(slides[currentImageIndex].image)}
             alt={name}
             className="horizontal-card-image"
-          />
+          />}
           <div className="buttons-container">
           <button className="prev-button" onClick={handlePrevImage}>
             &lt;

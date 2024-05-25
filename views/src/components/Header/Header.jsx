@@ -29,14 +29,15 @@ function Header() {
         <Link to="/publicaciones">Publicaciones</Link>
         <Link to="/donaciones">Donaciones</Link>
         <Link to="/comunidades">Comunidades</Link>
+        <Link to="/idiomas">Idiomas</Link>
 
-        {userId === null || userId == "-1" ? (
+        {userId === null || userId === "-1" ? (
           <Link to="/login">Iniciar Sesión</Link>
         ) : (
           <div className="user-menu">
             {users && (
               <span className="user-name">
-                {users.find(user => user.id === parseInt(userId, 10))?.name}
+                {users && users.find(user => user.id === parseInt(userId, 10))?.name}
               </span>
             )}
             <div className="dropdown-menu">
