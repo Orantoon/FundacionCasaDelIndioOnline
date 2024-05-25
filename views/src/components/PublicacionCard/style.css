@@ -1,9 +1,12 @@
 .pub-card {
-  width: 300px;
+  width: 600px;
+  height: 400px;
   border: 1px solid #ddd;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
+  margin-top: 50px;
 }
 
 .pub-image-container {
@@ -39,7 +42,7 @@
 }
 
 .pub-card-content {
-  padding: 15px;
+  padding: 25px;
   text-align: center;
 }
 
@@ -55,13 +58,15 @@
 
 .pub-see-more-button {
   padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+  margin-top: 20px;
+  background-color: transparent;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .pub-see-more-button:hover {
-  background-color: #0056b3;
+  background-color: #f5faff;
 }
