@@ -10,6 +10,8 @@ import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import Bitacora from './pages/Admin/Bitacora/Bitacora';
 import AddBitacora from './pages/Admin/Bitacora/AddBitacora';
 import ViewBitacora from './pages/Admin/Bitacora/ViewBitacora';
+import UserManagement from './pages/Admin/GestionUsuarios/UserManagement';
+import UserDetails from './pages/Admin/GestionUsuarios/UserDetails';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 
@@ -27,6 +29,8 @@ function App() {
         <Route path="/bitacora-options" element={<Bitacora/>} />
         <Route path="/add-bitacora" element={<AddBitacora />} />
         <Route path="/view-bitacora" element={<ViewBitacora />} />
+        <Route path="/gestion-usuarios" element={<UserManagement />} /> 
+        <Route path="/gestion-usuarios/:userId" element={<UserDetails />}/>
       </Routes>
       <Footer />
     </Router>

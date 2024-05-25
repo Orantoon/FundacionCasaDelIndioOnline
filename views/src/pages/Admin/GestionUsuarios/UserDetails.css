@@ -1,0 +1,72 @@
+.user-details {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.user-details-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-details-form label {
+  margin-bottom: 10px;
+}
+
+.user-details-form input[type="text"],
+.user-details-form input[type="email"],
+.user-details-form select {
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.user-details-form input[type="email"].non-selectable {
+  background-color: #f1f1f1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.permissions {
+  margin-top: 20px;
+}
+
+.permissions label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.user-details button {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.user-details button:hover {
+  background-color: #555;
+}
+
+.delete-button {
+  background-color: red;
+  margin-top: 10px;
+}
+
+.delete-button:hover {
+  background-color: darkred;
+}
+
+.back-button {
+  background-color: #ccc;
+  margin-top: 10px;
+}
+
+.back-button:hover {
+  background-color: #aaa;
+}
