@@ -15,6 +15,13 @@ function Login() {
   const [isRightPanelActive, setRightPanelActive] = React.useState(false);
   const [alertaLogin, setAlertaLogin] = React.useState(false);
   const [alertaRegister, setAlertaRegister] = React.useState(false);
+  const [passwordError, setPasswordError] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [validations, setValidations] = React.useState({
+    length: false,
+    uppercase: false,
+    specialChar: false,
+  });
 
   const handleSignInClick = () => {
     setRightPanelActive(false);
@@ -24,42 +31,63 @@ function Login() {
     setRightPanelActive(true);
   };
 
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+
+    setValidations({
+      length: value.length >= 8 && value.length <= 16,
+      uppercase: /[A-Z]/.test(value),
+      specialChar: /[!@#$%^&*]/.test(value),
+    });
+  };
+
   function handleSubmitRegister(e) {
     e.preventDefault();
   
     const form = e.target;
     const name = form.querySelector('input[type="text"]').value;
     const email = form.querySelector('input[type="email"]').value;
-    const password = form.querySelector('input[type="password"]').value;
+    const password = form.password.value;
     const isAdmin = 0;
     const newsletterInput = form.querySelector('input[type="checkbox"]').checked;
     const newsletter = newsletterInput ? 1 : 0;
     const fundation = 1;
 
-    const userData = {
-      name,
-      email,
-      password,
-      isAdmin,
-      newsletter,
-      fundation
-    };
-  
-    postData('http://localhost:4000/api/usuario', userData)
-    .then(data => {
-      console.log('Success:', data);
-      const userId = data.id
-      console.log('New user ID:', userId);
-      sessionStorage.setItem('userId', userId); // Se guarda el nuevo usuario en la variable de session
-      navigate('/');
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      setAlertaRegister(true);
-        setTimeout(() => {
-          setAlertaRegister(false);
-        }, 3000);
-    });
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/;
+    
+    if (!passwordRegex.test(password)) {
+      setPasswordError('La contraseña debe cumplir con todas las reglas.');
+    } else {
+
+      setPasswordError('');
+      const userData = {
+        name,
+        email,
+        password,
+        isAdmin,
+        newsletter,
+        fundation
+      };
+    
+      postData('http://localhost:4000/api/usuario', userData)
+      .then(data => {
+        console.log('Success:', data);
+        const userId = data.id
+        console.log('New user ID:', userId);
+        sessionStorage.setItem('userId', userId); // Se guarda el nuevo usuario en la variable de session
+        navigate('/');
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        setAlertaRegister(true);
+          setTimeout(() => {
+            setAlertaRegister(false);
+          }, 3000);
+      });
+
+      console.log('Formulario enviado con éxito');
+    }
   }
 
   const handleSubmitLogin = (e) => {
@@ -82,6 +110,10 @@ function Login() {
     }
   };
 
+  const handleForgotPasswordClick = () => {
+    navigate('/forgot-password');
+  };
+
   return (
     <div className="login">
       <div className={`container ${isRightPanelActive ? "right-panel-active" : ""}`}>
@@ -90,7 +122,22 @@ function Login() {
             <h2 className="form__title">Inscribirse</h2>
             <input type="text" placeholder="Usuario" className="input" />
             <input type="email" placeholder="Email" className="input" />
-            <input type="password" placeholder="Contraseña" className="input" />
+            <input 
+              type="password" 
+              placeholder="Contraseña" 
+              className="input" 
+              name="password" 
+              required 
+              value={password}
+              onChange={handlePasswordChange}
+            />
+            <p className="password-rules-header">La contraseña debe tener:</p>
+            <ul className="password-rules">
+              <li className={validations.length ? 'valid' : 'invalid'}>8 a 16 caracteres</li>
+              <li className={validations.uppercase ? 'valid' : 'invalid'}>Letra mayúscula</li>
+              <li className={validations.specialChar ? 'valid' : 'invalid'}>Carácter especial</li>
+            </ul>
+            {passwordError && <p className="error">{passwordError}</p>}
             
             <div className="checkbox-container">
               <input type="checkbox" id="newsletter" className="checkbox" />
@@ -105,9 +152,17 @@ function Login() {
           <form className="form" id="form2" onSubmit={handleSubmitLogin}>
             <h2 className="form__title">Iniciar sesión</h2>
             <input type="email" placeholder="Email" className="input"/>
-            <input type="password" placeholder="Password" className="input"/>
+            <input 
+              type="password" 
+              placeholder="Password" 
+              className="input" 
+              name="password" 
+              required 
+              value={password}
+              onChange={handlePasswordChange}
+            />
 
-            <a href="#" className="link">¿Olvidaste tu contraseña?</a>
+            <a href="#" className="link" onClick={handleForgotPasswordClick}>Olvidaste tu contraseña?</a>
 
             <button className="btn">Iniciar sesión</button>
           </form>

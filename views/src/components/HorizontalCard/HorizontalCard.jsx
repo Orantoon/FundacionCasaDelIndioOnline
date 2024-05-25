@@ -59,7 +59,8 @@ const HorizontalCard = ({ link, name, text, tribe, slides, images}) => {
         </div>
       )}
     </Link>
-  );  
+  );
+
 };
 
 export default HorizontalCard;
