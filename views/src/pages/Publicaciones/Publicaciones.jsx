@@ -7,29 +7,23 @@ import imgCasa from "../../imgs/casa1.png";
 import imgCard1 from "../../imgs/Card1.png";
 import imgCard2 from "../../imgs/Card2.png";
 import imgCard3 from "../../imgs/Card3.jpg";
-import './style.css'; // Asegúrate de importar el archivo CSS
+import './style.css';
 
 const Publicaciones = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [visibleCards, setVisibleCards] = useState(3); // Número de tarjetas visibles inicialmente
+  const [visibleCards, setVisibleCards] = useState(3);
 
   const handleCreatePost = () => {
     navigate('/crear-publicacion');
   };
 
-  const handleEditPost = (id) => {
-    console.log(`Editar Publicación ${id}`);
-    // Lógica para editar una publicación
-  };
-
-  const handleDeletePost = (id) => {
-    console.log(`Eliminar Publicación ${id}`);
-    // Lógica para eliminar una publicación
+  const handleViewDetail = (id) => {
+    navigate(`/publicaciones/${id}`);
   };
 
   const handleLoadMore = () => {
-    setVisibleCards(prevVisibleCards => prevVisibleCards + 3); // Cargar más tarjetas
+    setVisibleCards(prevVisibleCards => prevVisibleCards + 3);
   };
 
   const cards = [
@@ -97,13 +91,7 @@ const Publicaciones = () => {
       <div className="card-container">
         {cards.slice(0, visibleCards).map(card => (
           <div key={card.id} className="card">
-            <PublicacionCard card={card} />
-            {user && user.role === 'Admin' && (
-              <>
-                <button onClick={() => handleEditPost(card.id)}>Editar</button>
-                <button onClick={() => handleDeletePost(card.id)}>Eliminar</button>
-              </>
-            )}
+            <PublicacionCard card={card} onClick={() => handleViewDetail(card.id)} />
           </div>
         ))}
       </div>
