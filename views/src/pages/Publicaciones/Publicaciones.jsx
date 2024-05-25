@@ -1,5 +1,5 @@
 import React from 'react';
-import Carousel from '../../components/Carousel/Carousel.jsx';
+import CarouselPub from '../../components/CarouselPub/CarouselPub.jsx';
 import PublicacionCard from '../../components/PublicacionCard/PublicacionCard.jsx';
 import casa2 from  "../../imgs/Casa2.png"
 import imgCasa from "../../imgs/casa1.png"
@@ -7,7 +7,7 @@ import imgCard1 from  "../../imgs/Card1.png"
 import imgCard2 from  "../../imgs/Card2.png"
 import imgCard3 from  "../../imgs/Card3.jpg"
 
-const Publicaciones = ({images}) => {
+const Publicaciones = () => {
   // Dummy card data
   const cards = [
     {
@@ -69,7 +69,7 @@ const Publicaciones = ({images}) => {
   return (
     <div className="screen">
       <div className="card-container">
-      <Carousel cards={cards} CardComponent={PublicacionCard} images={images} />
+      <CarouselPub cards={cards} CardComponent={PublicacionCard} />
       </div>
     </div>
   );

@@ -51,7 +51,7 @@ function App() {
         <Route path="/comunidades" element={<Comunidades images={images}/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/idiomas" element={<Idiomas images={images}/>} />
-        <Route path="/publicaciones" element={<Publicaciones images={images}/>} />
+        <Route path="/publicaciones" element={<Publicaciones/>} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/bitacora-options" element={<Bitacora/>} />
         <Route path="/add-bitacora" element={<AddBitacora />} />
