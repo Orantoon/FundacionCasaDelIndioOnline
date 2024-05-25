@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './style.css'; // Asegúrate de tener este archivo en tu proyecto
 
-function App() {
+function Login() {
   const [isRightPanelActive, setRightPanelActive] = useState(false);
   const [passwordError, setPasswordError] = useState('');
   const [password, setPassword] = useState('');
@@ -114,4 +114,4 @@ function App() {
   );
 }
 
-export default App;
+export default Login;

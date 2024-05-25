@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css'; 
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
 import Card from '../../components/Card/Card';
 import casa2 from  "../../imgs/Casa2.png"
 import imgCasa from "../../imgs/casa1.png"
@@ -9,7 +9,16 @@ import imgCard2 from  "../../imgs/Card2.png"
 import imgCard3 from  "../../imgs/Card3.jpg"
 
 
+
+
+
 function HomePage() {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate('/iniciar-sesion');
+  };
+
   return (
     <div>
     <div className="main-content">
@@ -22,8 +31,7 @@ function HomePage() {
           La Casa del Indio es una Organización no gubernamental que se enfoca en brindarle hogar a indígenas de diferentes zonas del país para que estos tengan hogar en caso de que tengan que visitar Cartago o cercanías, entre otros tipos de ayuda que se les puedes ofrecer a esta parte de la población.
         </p>
         <div className="buttons-container">
-          <button className="btn btn-ingresar">Ingresar</button>
-          <button className="btn btn-registrarse">Registrarse</button>
+          <button className="btn btn-ingresar" onClick={handleButtonClick}>Ingresar</button>
         </div>
       </div>
     </div>
