@@ -1,0 +1,12 @@
+.screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card-container {
+  width: 75%;
+  display: flex;
+  justify-content: space-between; /* Adjust spacing between cards */
+}
