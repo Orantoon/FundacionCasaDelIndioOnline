@@ -13,16 +13,7 @@ const Publicaciones = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [visibleCards, setVisibleCards] = useState(3);
-
-  const handleCreatePost = () => {
-    navigate('/crear-publicacion');
-  };
-
-  const handleLoadMore = () => {
-    setVisibleCards(prevVisibleCards => prevVisibleCards + 3);
-  };
-
-  const cards = [
+  const [cards, setCards] = useState([
     {
       id: 1,
       images: [casa2, imgCard1],
@@ -77,7 +68,21 @@ const Publicaciones = () => {
       title: 'Comunidad 9',
       description: 'Description for Comunidad 9',
     },
-  ];
+  ]);
+
+  const handleCreatePost = () => {
+    navigate('/crear-publicacion');
+  };
+
+  const handleLoadMore = () => {
+    setVisibleCards(prevVisibleCards => prevVisibleCards + 3);
+  };
+
+  const updateCard = (updatedCard) => {
+    setCards((prevCards) =>
+      prevCards.map(card => card.id === updatedCard.id ? updatedCard : card)
+    );
+  };
 
   return (
     <div className="screen">
@@ -90,6 +95,7 @@ const Publicaciones = () => {
             key={card.id}
             card={card}
             isAdmin={user && user.role === 'Admin'}
+            updateCard={updateCard}
           />
         ))}
       </div>

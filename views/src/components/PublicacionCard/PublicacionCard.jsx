@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './style.css';
 import Modal from '../Modal/Modal';
 
-const PublicacionCard = ({ card, isAdmin }) => {
+const PublicacionCard = ({ card, isAdmin, updateCard }) => {
   const { images = [], title, description } = card;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -40,6 +40,7 @@ const PublicacionCard = ({ card, isAdmin }) => {
         description={description}
         isAdmin={isAdmin}
         cardId={card.id}
+        updateCard={updateCard}
       />
     </>
   );

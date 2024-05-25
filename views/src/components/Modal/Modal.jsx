@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
 
-const Modal = ({ isOpen, onClose, images, title, description, isAdmin, cardId }) => {
+const Modal = ({ isOpen, onClose, images, title, description, isAdmin, cardId, updateCard }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isEditing, setIsEditing] = useState(false);
   const [editTitle, setEditTitle] = useState(title);
@@ -12,14 +12,19 @@ const Modal = ({ isOpen, onClose, images, title, description, isAdmin, cardId })
 
   useEffect(() => {
     if (!isOpen) return;
-  }, [isOpen]);
+    setEditTitle(title);
+    setEditDescription(description);
+    setEditImages(images);
+  }, [isOpen, title, description, images]);
 
   const handleEditToggle = () => setIsEditing(!isEditing);
 
   const handleSave = () => {
-    console.log('Save changes', { editTitle, editDescription, editImages });
+    const updatedCard = { id: cardId, title: editTitle, description: editDescription, images: editImages };
+    updateCard(updatedCard);
     setIsEditing(false);
     navigate('/publicaciones');  // Navegar a la página de publicaciones después de guardar
+    onClose();
   };
 
   const handleDelete = () => {
@@ -99,8 +104,8 @@ const Modal = ({ isOpen, onClose, images, title, description, isAdmin, cardId })
               <img src={editImages[currentImageIndex]} alt={`Image ${currentImageIndex}`} className="modal-image" />
               <button className="nav-button right" onClick={nextImage}>›</button>
             </div>
-            <h2>{title}</h2>
-            <p>{description}</p>
+            <h2>{editTitle}</h2>
+            <p>{editDescription}</p>
             {isAdmin && (
               <>
                 <button className="edit-button" onClick={handleEditToggle}>Editar</button>
