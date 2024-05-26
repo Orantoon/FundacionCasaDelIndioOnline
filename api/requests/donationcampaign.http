@@ -1,0 +1,29 @@
+@api = http://localhost:4000/api/donationcampaign
+
+GET {{api}}
+
+###
+
+POST {{api}}
+Content-Type: application/json
+
+{
+    "community": 1,
+    "name": "Campana de Donacion API",
+    "text": "Esta es una campana de donacion de prueba para la Comunidad Prueba creada desde el API."
+}
+
+###
+
+DELETE {{api}}/2
+
+###
+
+PATCH {{api}}/2
+Content-Type: application/json
+
+{
+    "community": 1,
+    "name": "Campana de Donacion API UPDATE",
+    "text": "Esta es una campana de donacion de prueba para la Comunidad Prueba creada desde el API con UPDATE."
+}

@@ -1,0 +1,38 @@
+@api = http://localhost:4000/api/usuario
+
+GET {{api}}
+
+###
+
+GET {{api}}/1
+
+###
+
+POST {{api}}
+Content-Type: application/json
+
+{
+    "name": "Nuevo Usuario",
+    "email": "nuevousuario@gmail.com",
+    "password": "nuevousuario1234",
+    "isAdmin": 0,
+    "newsletter": 0,
+    "fundation": 1
+}
+
+###
+
+DELETE {{api}}/3
+
+###
+
+PATCH {{api}}/3
+Content-Type: application/json
+
+{
+    "name": "Nuevo Usuario UPDATE",
+    "email": "nuevousuarioUPDATE@gmail.com",
+    "password": "nuevousuarioUPDATE1234",
+    "isAdmin": 1,
+    "newsletter": 1
+}

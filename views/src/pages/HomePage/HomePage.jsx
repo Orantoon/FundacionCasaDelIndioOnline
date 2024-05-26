@@ -8,15 +8,11 @@ import imgCard1 from  "../../imgs/Card1.png"
 import imgCard2 from  "../../imgs/Card2.png"
 import imgCard3 from  "../../imgs/Card3.jpg"
 
-
-
-
-
 function HomePage() {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate('/iniciar-sesion');
+    navigate('/login');
   };
 
   return (

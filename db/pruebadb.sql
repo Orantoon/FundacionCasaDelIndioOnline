@@ -18,3 +18,7 @@ INSERT INTO employee VALUES
     (4, 'Max', 1500);
 
 SELECT * FROM employee;
+
+SELECT * FROM employee WHERE id = 1;
+
+DELETE FROM employee WHERE id = 2;

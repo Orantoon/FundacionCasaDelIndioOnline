@@ -1,9 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
+import { useNavigate } from "react-router-dom";
+import { useGet } from '../../useGet';
 import logo from "../../imgs/logo.png";
 
 function Header() {
+  // GET Users
+  const {variable: users} = useGet('http://localhost:4000/api/usuario');
+  const userId = sessionStorage.getItem('userId');
+
+  let navigate = useNavigate();
+  const handleLogout = () => {
+    sessionStorage.setItem('userId', -1);
+    navigate('/');
+  };
+
   return (
     <header className="header">
       <div className="logo">
@@ -14,11 +26,25 @@ function Header() {
       </div>
       <nav className="navigation">
         <Link to="/sobre-nosotros">Sobre nosotros</Link>
-        <Link to="/camas">Camas</Link>
         <Link to="/publicaciones">Publicaciones</Link>
         <Link to="/donacion">Donacion</Link>
         <Link to="/comunidades">Comunidades</Link>
-        <Link to="/iniciar-sesion">Iniciar Sesión</Link>    
+        <Link to="/idiomas">Idiomas</Link>
+
+        {userId === null || userId === "-1" ? (
+          <Link to="/login">Iniciar Sesión</Link>
+        ) : (
+          <div className="user-menu">
+            {users && (
+              <span className="user-name">
+                {users && users.find(user => user.id === parseInt(userId, 10))?.name}
+              </span>
+            )}
+            <div className="dropdown-menu">
+              <button onClick={handleLogout}>Cerrar Sesión</button>
+            </div>
+          </div>
+        )}
       </nav>
     </header>
   );

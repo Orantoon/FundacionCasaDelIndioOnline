@@ -1,0 +1,15 @@
+@api = http://localhost:4000/api/fundacion
+
+GET {{api}}/0
+
+###
+
+PATCH {{api}}/1
+Content-Type: application/json
+
+{
+    "vision": "Vision",
+    "mision": "Mision",
+    "history": "Historia",
+    "infoIdiomas": "InfoIdiomas"
+}

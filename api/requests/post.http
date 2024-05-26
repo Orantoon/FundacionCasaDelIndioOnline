@@ -1,0 +1,35 @@
+@api = http://localhost:4000/api/post
+
+GET {{api}}
+
+###
+
+GET {{api}}/1
+
+###
+
+POST {{api}}
+Content-Type: application/json
+
+{
+    "user": 2,
+    "name": "Post Prueba",
+    "text": "Este es un post de prueba creado con el API.",
+    "image": "imgs/pruebaPost1.jpg"
+}
+
+###
+
+DELETE {{api}}/2
+
+###
+
+PATCH {{api}}/2
+Content-Type: application/json
+
+{
+    "user": 2,
+    "name": "Post Prueba UPDATE",
+    "text": "Este es un post de prueba creado con el API y actualizado con el UPDATE.",
+    "image": "imgs/pruebaPost1.jpg"
+}

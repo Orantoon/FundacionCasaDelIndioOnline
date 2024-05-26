@@ -1,0 +1,18 @@
+@api = http://localhost:4000/api/comment
+
+GET {{api}}/1
+
+###
+
+POST {{api}}
+Content-Type: application/json
+
+{
+    "user": 1,
+    "post": 1,
+    "text": "Comentario de prueba."
+}
+
+###
+
+DELETE {{api}}/2

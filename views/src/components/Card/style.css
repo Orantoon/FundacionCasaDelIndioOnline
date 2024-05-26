@@ -1,4 +1,4 @@
-.card {
+.normal-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,7 +12,7 @@
     height: 470px;
 }
 
-.card:hover {
+.normal-card:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
