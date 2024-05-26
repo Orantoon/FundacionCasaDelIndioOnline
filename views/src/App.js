@@ -18,6 +18,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './pages/Admin/GestionRoles/AuthContext';
 import AdminLogin from './pages/Login/Simulation/AdminLogin';
 import CrearPublicaciones from './pages/Publicaciones/CrearPublicaciones/CreatePublicacion';
+import Donacion from './pages/Donaciones/Donacion';
+import VerDonaciones from './pages/Donaciones/VerDonaciones';
 import './App.css';
 
 function App() {
@@ -40,6 +42,8 @@ function App() {
           <Route path="/gestion-usuarios/:userId" element={<UserDetails />} />
           <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/crear-publicacion" element={<CrearPublicaciones />} />
+          <Route path="/donacion" element={<Donacion />} />
+          <Route path="/verdonaciones" element={<VerDonaciones />} />
         </Routes>
         <Footer />
       </Router>

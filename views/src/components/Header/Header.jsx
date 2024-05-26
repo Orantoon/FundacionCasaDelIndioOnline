@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './style.css';
 import logo from "../../imgs/logo.png";
 
@@ -7,18 +7,18 @@ function Header() {
   return (
     <header className="header">
       <div className="logo">
-        <NavLink to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
           <img src={logo} alt="Casa del Indio" />
-          <span style={{ fontStyle:'bolder',fontSize:'20',marginLeft: '10px' }}>Casa del Indio</span>
-        </NavLink>
+          <span style={{ marginLeft: '10px' }}>Casa del Indio</span>
+        </Link>
       </div>
       <nav className="navigation">
-        <NavLink to="/sobre-nosotros" activeClassName="active">Sobre nosotros</NavLink>
-        <NavLink to="/camas" activeClassName="active">Camas</NavLink>
-        <NavLink to="/publicaciones" activeClassName="active">Publicaciones</NavLink>
-        <NavLink to="/donaciones" activeClassName="active">Donaciones</NavLink>
-        <NavLink to="/comunidades" activeClassName="active">Comunidades</NavLink>
-        <NavLink to="/iniciar-sesion" activeClassName="active">Ingresar</NavLink>
+        <Link to="/sobre-nosotros">Sobre nosotros</Link>
+        <Link to="/camas">Camas</Link>
+        <Link to="/publicaciones">Publicaciones</Link>
+        <Link to="/donacion">Donacion</Link>
+        <Link to="/comunidades">Comunidades</Link>
+        <Link to="/iniciar-sesion">Iniciar Sesión</Link>    
       </nav>
     </header>
   );

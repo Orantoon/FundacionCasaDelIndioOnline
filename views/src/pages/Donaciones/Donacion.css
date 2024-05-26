@@ -1,0 +1,63 @@
+.donacion {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .donacion h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .donacion form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .donacion label {
+    margin-bottom: 10px;
+  }
+  
+  .donacion input,
+  .donacion textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .donacion select {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+
+  }
+  .donacion .form-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .donacion button {
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .donacion button:hover {
+    background-color: #555;
+  }
+  
+  .donacion button[type="button"] {
+    background-color: #007bff;
+  }
+  
+  .donacion button[type="button"]:hover {
+    background-color: #0056b3;
+  }
+  
