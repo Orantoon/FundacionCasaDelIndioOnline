@@ -15,7 +15,7 @@ Content-Type: application/json
     "user": 2,
     "name": "Post Prueba",
     "text": "Este es un post de prueba creado con el API.",
-    "image": "imgs/pruebaPost1.jpg"
+    "image": "./Card1.png"
 }
 
 ###
@@ -31,5 +31,5 @@ Content-Type: application/json
     "user": 2,
     "name": "Post Prueba UPDATE",
     "text": "Este es un post de prueba creado con el API y actualizado con el UPDATE.",
-    "image": "imgs/pruebaPost1.jpg"
+    "image": "./Card1.png"
 }

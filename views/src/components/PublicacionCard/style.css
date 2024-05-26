@@ -9,6 +9,7 @@
   width: 100%;
   cursor: pointer;
   transition: transform 0.3s;
+  position: relative; /* Asegura que los elementos hijos absolutos estén posicionados respecto a este contenedor */
 }
 
 .pub-card:hover {
@@ -76,4 +77,18 @@
 
 .pub-see-more-button:hover {
   background-color: #555;
+}
+
+.pub-date-time {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 0.8em;
+  visibility: visible; 
+  opacity: 1; 
+  z-index: 2;
 }

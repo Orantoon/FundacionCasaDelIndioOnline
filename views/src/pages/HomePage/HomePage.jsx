@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.css'; 
 import { Link ,useNavigate} from 'react-router-dom';
+import { useGet } from '../../useGet';
 import Card from '../../components/Card/Card';
 import casa2 from  "../../imgs/Casa2.png"
 import imgCasa from "../../imgs/casa1.png"
@@ -9,6 +10,9 @@ import imgCard2 from  "../../imgs/Card2.png"
 import imgCard3 from  "../../imgs/Card3.jpg"
 
 function HomePage() {
+  // GET Users
+  const {variable: users} = useGet('http://localhost:4000/api/usuario');
+  const userId = sessionStorage.getItem('userId');
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
@@ -26,9 +30,19 @@ function HomePage() {
         <p>
           La Casa del Indio es una Organización no gubernamental que se enfoca en brindarle hogar a indígenas de diferentes zonas del país para que estos tengan hogar en caso de que tengan que visitar Cartago o cercanías, entre otros tipos de ayuda que se les puedes ofrecer a esta parte de la población.
         </p>
-        <div className="buttons-container">
-          <button className="btn btn-ingresar" onClick={handleButtonClick}>Ingresar</button>
-        </div>
+        {userId === null || userId === "-1" ? (
+          <div className="buttons-container">
+            <button className="btn btn-ingresar" onClick={handleButtonClick}>Ingresar</button>
+          </div>
+        ) : (
+          <div>
+            {users && (
+              <span className='hello-user'>
+                Hola {users && users.find(user => user.id === parseInt(userId, 10))?.name}!
+              </span>
+            )}
+          </div>
+        )}
       </div>
     </div>
     <div>

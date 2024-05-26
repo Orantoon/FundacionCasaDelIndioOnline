@@ -78,16 +78,26 @@ export const updatePost = async (req, res) => {
 
 export const deletePost = async (req, res) => {
     try {
+        await pool.query('START TRANSACTION');
+
+        await pool.query('DELETE FROM Comment WHERE post = ?', [req.params.id]);
+
         const [result] = await pool.query('DELETE FROM Post WHERE id = ?', [req.params.id])
     
-        if (result.affectedRows <= 0) return res.status(404).json({
-            message: 'Post not found'
-        })
+        if (result.affectedRows <= 0) {
+            await pool.query('ROLLBACK');
+            return res.status(404).json({
+                message: 'Post not found'
+            });
+        }
+
+        await pool.query('COMMIT');
         
         res.sendStatus(204)
     } catch (error) {
+        await pool.query('ROLLBACK');
         return res.status(500).json({
             message: 'Something went wrong'
-        })
+        });
     }
 };

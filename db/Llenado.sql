@@ -13,7 +13,15 @@ INSERT INTO User (name, email, password, isAdmin, newsletter, creationDateTime, 
 SELECT * FROM User;
 
 -- Post
-INSERT INTO Post (user, name, text, image, creationDateTime) VALUES (1, 'Post Prueba', 'Esta es una publicacion de prueba.', 'imgs/pruebaPost1.jpg', NOW());
+INSERT INTO Post (user, name, text, image, creationDateTime) VALUES (2, 'Post Prueba 1', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry...', './Casa2.png', NOW());
+INSERT INTO Post (user, name, text, image, creationDateTime) VALUES (2, 'Post Prueba 2', 'Esta es una publicacion de prueba 2.', './casa1.png', NOW());
+INSERT INTO Post (user, name, text, image, creationDateTime) VALUES (2, 'Post Prueba 3', 'Esta es una publicacion de prueba 3.', './Card1.png', NOW());
+INSERT INTO Post (user, name, text, image, creationDateTime) VALUES (2, 'Post Prueba 4', 'Esta es una publicacion de prueba 4.', './Card2.png', NOW());
+INSERT INTO Post (user, name, text, image, creationDateTime) VALUES (2, 'Post Prueba 5', 'Esta es una publicacion de prueba 5.', './Card3.jpg', NOW());
+INSERT INTO Post (user, name, text, image, creationDateTime) VALUES (2, 'Post Prueba 6', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry...', './Casa2.png', NOW());
+INSERT INTO Post (user, name, text, image, creationDateTime) VALUES (2, 'Post Prueba 7', 'Esta es una publicacion de prueba 7.', './casa1.png', NOW());
+INSERT INTO Post (user, name, text, image, creationDateTime) VALUES (2, 'Post Prueba 8', 'Esta es una publicacion de prueba 8.', './Card1.png', NOW());
+INSERT INTO Post (user, name, text, image, creationDateTime) VALUES (2, 'Post Prueba 9', 'Esta es una publicacion de prueba 9.', './Card2.png', NOW());
 SELECT * FROM Post;
 
 -- Comment

@@ -1,74 +1,19 @@
 import React, { useState } from 'react';
-import { useAuth } from '../Admin/GestionRoles/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import casa2 from "../../imgs/Casa2.png";
-import imgCasa from "../../imgs/casa1.png";
-import imgCard1 from "../../imgs/Card1.png";
-import imgCard2 from "../../imgs/Card2.png";
-import imgCard3 from "../../imgs/Card3.jpg";
+import { useGet } from '../../useGet';
 import PublicacionCard from '../../components/PublicacionCard/PublicacionCard';
 import './style.css';
 
-const Publicaciones = () => {
-  const { user } = useAuth();
+const Publicaciones = ({images}) => {
+  // GET Post
+  const {variable: posts} = useGet('http://localhost:4000/api/post');
+  // GET Users
+  const {variable: users} = useGet('http://localhost:4000/api/usuario');
+  const userId = sessionStorage.getItem('userId');
+
   const navigate = useNavigate();
   const [visibleCards, setVisibleCards] = useState(3);
-  const [cards, setCards] = useState([
-    {
-      id: 1,
-      images: [casa2, imgCard1],
-      title: 'Comunidad 1',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry...',
-    },
-    {
-      id: 2,
-      images: [imgCasa, imgCard1],
-      title: 'Comunidad 2',
-      description: 'Description for Comunidad 2',
-    },
-    {
-      id: 3,
-      images: [imgCard1, imgCasa],
-      title: 'Comunidad 3',
-      description: 'Description for comunidad 3',
-    },
-    {
-      id: 4,
-      images: [imgCard2],
-      title: 'Comunidad 4',
-      description: 'Description for comunidad 4',
-    },
-    {
-      id: 5,
-      images: [imgCard3],
-      title: 'Comunidad 5',
-      description: 'Description for comunidad 5',
-    },
-    {
-      id: 6,
-      images: ['https://via.placeholder.com/150'],
-      title: 'Comunidad 6',
-      description: 'Description for Comunidad 6',
-    },
-    {
-      id: 7,
-      images: ['https://via.placeholder.com/150'],
-      title: 'Comunidad 7',
-      description: 'Description for Comunidad 7',
-    },
-    {
-      id: 8,
-      images: ['https://via.placeholder.com/150'],
-      title: 'Comunidad 8',
-      description: 'Description for Comunidad 8',
-    },
-    {
-      id: 9,
-      images: ['https://via.placeholder.com/150'],
-      title: 'Comunidad 9',
-      description: 'Description for Comunidad 9',
-    },
-  ]);
+
 
   const handleCreatePost = () => {
     navigate('/crear-publicacion');
@@ -78,34 +23,31 @@ const Publicaciones = () => {
     setVisibleCards(prevVisibleCards => prevVisibleCards + 3);
   };
 
-  const updateCard = (updatedCard) => {
-    setCards((prevCards) =>
-      prevCards.map(card => card.id === updatedCard.id ? updatedCard : card)
-    );
-  };
-
   return (
     <div className="screen">
-      {user && user.role === 'Admin' && (
+      {users && users.find(user => user.id === parseInt(userId, 10))?.isAdmin === 1 && (
         <button onClick={handleCreatePost}>Crear Publicación</button>
       )}
       <div className="card-container">
-        {cards.slice(0, visibleCards).map(card => (
-          <PublicacionCard
-            key={card.id}
-            card={card}
-            isAdmin={user && user.role === 'Admin'}
-            updateCard={updateCard}
-          />
-        ))}
+        {posts && posts
+          .slice()
+          .sort((a, b) => new Date(b.creationDateTime) - new Date(a.creationDateTime))
+          .map((post, index) => (
+            <PublicacionCard
+              key={index}
+              card={post}
+              isAdmin={users && users.find(user => user.id === parseInt(userId, 10))?.isAdmin === 1}
+              images={images}
+            />
+          ))}
       </div>
-      {visibleCards < cards.length && (
+      {posts && visibleCards < posts.length && (
         <div className="load-more-container">
           <button className="load-more-button" onClick={handleLoadMore}>Cargar más</button>
         </div>
       )}
     </div>
-  );
+  );  
 };
 
 export default Publicaciones;

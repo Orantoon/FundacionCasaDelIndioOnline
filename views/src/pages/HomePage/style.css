@@ -12,6 +12,17 @@
     flex-wrap: wrap; /* Para que las tarjetas se envuelvan si no caben en una sola fila */
 }
 
+.main-content .hello-user{
+  color: #004225;
+  font-size: 24px;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; 
+}
+
 .titles {
   text-align: center;
   margin-top: 50px; /* Espacio superior para separar el título del contenido */
