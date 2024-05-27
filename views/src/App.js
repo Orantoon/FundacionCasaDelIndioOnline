@@ -6,7 +6,6 @@ import SobreNosotros from './pages/SobreNosotros/SobreNosotros';
 import Comunidades from './pages/Comunidades/Comunidades';
 import Publicaciones from './pages/Publicaciones/Publicaciones';
 import PublicacionDetail from './components/Modal/Modal';
-import EditarPublicacion from './pages/Publicaciones/EditarPublicaciones/EditarPublicacion';
 import Idiomas from './pages/Idiomas/Idiomas';
 import Login from './pages/Login/Login';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
@@ -17,7 +16,6 @@ import UserManagement from './pages/Admin/GestionUsuarios/UserManagement';
 import UserDetails from './pages/Admin/GestionUsuarios/UserDetails';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './pages/Admin/GestionRoles/AuthContext';
-import AdminLogin from './pages/Login/Simulation/AdminLogin';
 import CrearPublicaciones from './pages/Publicaciones/CrearPublicaciones/CreatePublicacion';
 import Donacion from './pages/Donaciones/Donacion';
 import VerDonaciones from './pages/Donaciones/VerDonaciones';
@@ -69,7 +67,6 @@ function App() {
           <Route path="/view-bitacora" element={<ViewBitacora />} />
           <Route path="/gestion-usuarios" element={<UserManagement />} />
           <Route path="/gestion-usuarios/:userId" element={<UserDetails />} />
-          <Route path="/admin-login" element={<AdminLogin />} />
           <Route path="/crear-publicacion" element={<CrearPublicaciones />} />
           <Route path="/donacion" element={<Donacion />} />
           <Route path="/verdonaciones" element={<VerDonaciones />} />

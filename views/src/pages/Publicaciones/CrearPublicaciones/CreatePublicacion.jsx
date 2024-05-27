@@ -46,7 +46,7 @@ const CreatePublicacion = () => {
       formData.append('image', file, filename);
     });
   
-    fetch('http://localhost:4000/upload', {
+    fetch('http://localhost:4000/api/newimage', {
       method: 'POST',
       body: formData
     })
