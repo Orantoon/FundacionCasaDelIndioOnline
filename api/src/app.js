@@ -10,6 +10,7 @@ import donationcampaignRoutes from './routes/donationcampaign.routes.js'
 import donationRoutes from './routes/donation.routes.js'
 import newImageRoutes from './routes/newImage.routes.js'
 import sendEmailRoutes from './routes/sendEmail.routes.js'
+import newsletterRoutes from './routes/newsletter.routes.js'
 
 const app = express();
 const cors = require('cors');
@@ -35,6 +36,9 @@ app.use('/api', newImageRoutes);
 
 // Enviar correo 
 app.use('/api', sendEmailRoutes);
+
+// Enviar newsletter
+app.use('/api', newsletterRoutes);
 
 app.use((req, res, next) => {
     res.status(404).json({

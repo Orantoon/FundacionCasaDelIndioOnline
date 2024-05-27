@@ -55,7 +55,7 @@ const CreatePublicacion = () => {
     setNewImageFlag(false)
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     console.log('Crear Publicación', post);
@@ -71,6 +71,30 @@ const CreatePublicacion = () => {
           setTimeout(() => {
             setAlertaPost(false);
           }, 3000);
+      });
+
+      // NEWSLETTER
+      const newsletterUsers = users.filter(user => user.newsletter === 1);
+      newsletterUsers.forEach(async (user, index) => {
+        const email = user.email;
+        try {
+          await new Promise(resolve => setTimeout(resolve, index * 1000));
+          const response = await fetch('http://localhost:4000/api/newsletter', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, post })
+          });
+      
+          if (response.ok) {
+            console.log('Email enviado exitosamente');
+          } else {
+            console.error('Error al enviar el correo');
+          }
+        } catch (error) {
+          console.error('Error de red:', error);
+        }
       });
   };
 
