@@ -2,13 +2,9 @@ import React from 'react';
 import './style.css'; 
 import { Link ,useNavigate} from 'react-router-dom';
 import { useGet } from '../../useGet';
-import PublicacionCard from '../../components/PublicacionCard/PublicacionCard';
 import Card from '../../components/Card/Card';
 import casa2 from  "../../imgs/Casa2.png"
 import imgCasa from "../../imgs/casa1.png"
-import imgCard1 from  "../../imgs/Card1.png"
-import imgCard2 from  "../../imgs/Card2.png"
-import imgCard3 from  "../../imgs/Card3.jpg"
 
 function HomePage({images}) {
   // GET Post
@@ -44,6 +40,7 @@ function HomePage({images}) {
           <h2>Fundación Casa del Indio</h2>
           <p>
             La Casa del Indio es una Organización no gubernamental que se enfoca en brindarle hogar a indígenas de diferentes zonas del país para que estos tengan hogar en caso de que tengan que visitar Cartago o cercanías, entre otros tipos de ayuda que se les puede ofrecer a esta parte de la población.
+            Es una organización ecologista e indigenista.
           </p>
           {userId === null || userId === "-1" ? (
             <div className="buttons-container">

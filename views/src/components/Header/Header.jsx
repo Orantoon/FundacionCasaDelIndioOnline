@@ -28,7 +28,7 @@ function Header() {
       <nav className="navigation">
         <Link to="/sobre-nosotros">Sobre nosotros</Link>
         <Link to="/publicaciones">Publicaciones</Link>
-        <Link to="/donacion">Donación</Link>
+        {userId != -1 && <Link to="/donacion">Donación</Link>}
         <Link to="/comunidades">Comunidades</Link>
         <Link to="/idiomas">Idiomas</Link>
         {isAdmin && <Link to="/bitacora-options">Bitácoras</Link>}
