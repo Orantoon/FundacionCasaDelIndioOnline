@@ -31,7 +31,9 @@ export const getVisitlog = async (req, res) => {
 export const postVisitlog = async (req, res) => {
     const {user, community, name, details} = req.body
     const currentDate = new Date();
-    const dateTime = currentDate.toISOString().slice(0, 10)
+    const offset = currentDate.getTimezoneOffset() * 60000;
+    const localDate = new Date(currentDate.getTime() - offset);
+    const dateTime = localDate.toISOString().slice(0, 19).replace('T', ' ');
 
     try {
         const [rows] = await pool.query('INSERT INTO Visitlog (user, community, name, details, dateTime) VALUES (?, ?, ?, ?, ?)', [user, community, name, details, dateTime])

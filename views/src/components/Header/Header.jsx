@@ -9,6 +9,7 @@ function Header() {
   // GET Users
   const {variable: users} = useGet('http://localhost:4000/api/usuario');
   const userId = sessionStorage.getItem('userId');
+  const isAdmin = users && users.find(user => user.id === parseInt(userId, 10))?.isAdmin === 1;
 
   let navigate = useNavigate();
   const handleLogout = () => {
@@ -25,6 +26,9 @@ function Header() {
         </Link>
       </div>
       <nav className="navigation">
+        {isAdmin && 
+          <Link to="/bitacora-options">Bitacoras</Link>
+        }
         <Link to="/sobre-nosotros">Sobre nosotros</Link>
         <Link to="/publicaciones">Publicaciones</Link>
         <Link to="/donacion">Donacion</Link>

@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AddBitacora.css'; // Asegúrate de tener este archivo en tu proyecto
+import { useGet } from '../../../useGet';
+import { postData } from '../../../postData';
 
 function AddBitacora() {
+
+  // GET Campaigns
+  const { variable: communities } = useGet('http://localhost:4000/api/community');
+  const userId = sessionStorage.getItem('userId');
+
+  const [community, setCommunity] = useState(null);
+  const [alertaCommunity, setAlertaCommunity] = useState(false);
+  const [alertaBitacora, setAlertaBitacora] = useState(false);
   const [formData, setFormData] = useState({
-    nombre: '',
-    cedula: '',
-    comunidad: '',
-    motivo: ''
+    user: userId,
+    name: '',
+    details: ''
   });
   const navigate = useNavigate();
 
@@ -19,18 +28,40 @@ function AddBitacora() {
     });
   };
 
+  const handleCommunityChange = (e) => {
+    setCommunity(e.target.value);
+};
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Simulación de envío de datos
-    console.log('Datos enviados:', formData);
-    alert('Datos agregados a la bitácora');
-    setFormData({
-      nombre: '',
-      cedula: '',
-      comunidad: '',
-      motivo: ''
-    });
+    if (!community){
+      setAlertaCommunity(true);
+      setTimeout(() => {
+          setAlertaCommunity(false);
+      }, 3000);
+    } else {
+      const newData = {
+        user: formData.user,
+        name: formData.name,
+        details: formData.details,
+        community: community
+      }
+
+      postData('http://localhost:4000/api/visitlog', newData)
+        .then(data => {
+            console.log('Success:', data);
+            navigate('/bitacora-options'); // Regresa a la página Home
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            setAlertaBitacora(true);
+            setTimeout(() => {
+              setAlertaBitacora(false);
+            }, 3000);
+        });
+    }
+
   };
 
   const handleBackToBitacora = () => {
@@ -46,41 +77,40 @@ function AddBitacora() {
             type="text" 
             placeholder="Nombre" 
             className="input" 
-            name="nombre" 
+            name="name" 
             required 
-            value={formData.nombre}
-            onChange={handleChange}
-          />
-          <input 
-            type="text" 
-            placeholder="Cédula" 
-            className="input" 
-            name="cedula" 
-            required 
-            value={formData.cedula}
-            onChange={handleChange}
-          />
-          <input 
-            type="text" 
-            placeholder="Comunidad" 
-            className="input" 
-            name="comunidad" 
-            required 
-            value={formData.comunidad}
+            value={formData.name}
             onChange={handleChange}
           />
           <textarea 
-            placeholder="Motivo" 
+            type="text" 
+            placeholder="Detalles" 
             className="input" 
-            name="motivo" 
+            name="details" 
             required 
-            value={formData.motivo}
+            value={formData.details}
             onChange={handleChange}
           />
+          <select onChange={handleCommunityChange}>
+              <option>Select Campaign</option>
+              {communities && communities.map(community => (
+                  <option key={community.id} value={community.id}>{community.name}</option>
+              ))}
+          </select>
           <button className="btn" type="submit">Agregar</button>
         </form>
         <button className="btn-back" onClick={handleBackToBitacora}>Regresar a Bitácora</button>
       </div>
+      {alertaCommunity && 
+          <div className="alert">
+          Debe escoger una Comunidad antes de continuar.
+          </div>
+      }
+      {alertaBitacora && 
+          <div className="alert">
+          Ocurrió un error al crear la bitácora, por favor inténtelo de nuevo.
+          </div>
+      }
     </div>
   );
 }

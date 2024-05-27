@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ViewBitacora.css'; // Asegúrate de tener este archivo en tu proyecto
+import { useGet } from '../../../useGet';
 
 // Datos simulados de la bitácora
 const allBitacoraData = [
@@ -21,6 +22,14 @@ const allBitacoraData = [
 const PAGE_SIZE = 3;
 
 function ViewBitacora() {
+
+  // GET Visit Logs
+  const {variable: visitlogs} = useGet('http://localhost:4000/api/visitlog');
+  // GET Users
+  const {variable: users} = useGet('http://localhost:4000/api/usuario');
+  // GET Communities
+  const {variable: communities} = useGet('http://localhost:4000/api/community');
+
   const [bitacoraData, setBitacoraData] = useState([]);
   const [selectedEntry, setSelectedEntry] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,16 +37,19 @@ function ViewBitacora() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = () => {
-      const totalEntries = allBitacoraData.length;
-      setTotalPages(Math.ceil(totalEntries / PAGE_SIZE));
-      const startIdx = (currentPage - 1) * PAGE_SIZE;
-      const endIdx = startIdx + PAGE_SIZE;
-      setBitacoraData(allBitacoraData.slice(startIdx, endIdx));
-    };
-
-    fetchData();
-  }, [currentPage]);
+    if (visitlogs) {
+      const fetchData = () => {
+        const totalEntries = visitlogs.length;
+        setTotalPages(Math.ceil(totalEntries / PAGE_SIZE));
+        const startIdx = (currentPage - 1) * PAGE_SIZE;
+        const endIdx = startIdx + PAGE_SIZE;
+        setBitacoraData(visitlogs.slice(startIdx, endIdx));
+      };
+  
+      fetchData();
+    }
+  }, [visitlogs, currentPage]);
+  
 
   const handleRowClick = (entry) => {
     setSelectedEntry(entry);
@@ -67,18 +79,16 @@ function ViewBitacora() {
           <thead>
             <tr>
               <th>Nombre</th>
-              <th>Cédula</th>
-              <th>Comunidad</th>
-              <th>Motivo</th>
+              <th>Detalles</th>
+              <th>Fecha</th>
             </tr>
           </thead>
           <tbody>
             {bitacoraData.map((entry) => (
               <tr key={entry.id} onClick={() => handleRowClick(entry)}>
-                <td>{entry.nombre}</td>
-                <td>{entry.cedula}</td>
-                <td>{entry.comunidad}</td>
-                <td>{entry.motivo}</td>
+                <td>{entry.name}</td>
+                <td>{entry.details}</td>
+                <td>{new Date(entry.dateTime).toLocaleString([], { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</td>
               </tr>
             ))}
           </tbody>
@@ -92,10 +102,11 @@ function ViewBitacora() {
         {selectedEntry && (
           <div className="entry-details">
             <h3>Detalles del Registro</h3>
-            <p><strong>Nombre:</strong> {selectedEntry.nombre}</p>
-            <p><strong>Cédula:</strong> {selectedEntry.cedula}</p>
-            <p><strong>Comunidad:</strong> {selectedEntry.comunidad}</p>
-            <p><strong>Motivo:</strong> {selectedEntry.motivo}</p>
+            <p><strong>Nombre:</strong> {selectedEntry.name}</p>
+            <p><strong>Detalles:</strong> {selectedEntry.details}</p>
+            <p><strong>Comunidad:</strong> {communities && communities.find(community => community.id === selectedEntry.community).name}</p>
+            <p><strong>Encargado:</strong> {users && users.find(user => user.id === selectedEntry.user).name}</p>
+            <p><strong>Fecha:</strong> {new Date(selectedEntry.dateTime).toLocaleString([], { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
             <button className="btn" onClick={() => setSelectedEntry(null)}>Cerrar</button>
           </div>
         )}

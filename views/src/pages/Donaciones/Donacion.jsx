@@ -27,6 +27,10 @@ const Donacion = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        if (campaignDonacion === 'Select Campaign'){
+            setCampaignDonacion(null);
+        } 
+
         const donation = {
             user: parseInt(sessionStorage.getItem('userId'), 10),
             details: details, 

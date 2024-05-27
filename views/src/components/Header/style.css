@@ -75,7 +75,6 @@
     font-weight: bold;
     cursor: pointer;
     width: 100%;
-    text-align: left;
     text-align: center;
   }
   
@@ -83,9 +82,18 @@
     background-color: #ddd;
   }
   
+  .user-menu {
+    position: relative;
+  }
+  
   .user-menu:hover .dropdown-menu {
     display: block;
-  }  
+  }
+  
+  .user-menu button {
+    display: block;
+    margin: 0 auto;
+  } 
   
   @media (max-width: 768px) {
     .navigation {
