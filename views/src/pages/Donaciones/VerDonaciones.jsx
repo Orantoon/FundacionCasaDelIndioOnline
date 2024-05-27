@@ -1,30 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
 import './VerDonaciones.css';
+import { useGet } from '../../useGet';
+import { putData } from '../../putData';
 
 const VerDonaciones = () => {
-    const [donations, setDonations] = useState([]);
+    // GET Donations
+    const {variable: donations} = useGet('http://localhost:4000/api/donation');
+    // GET Users
+    const {variable: users} = useGet('http://localhost:4000/api/usuario');
+    const userId = parseInt(sessionStorage.getItem('userId'), 10);
+
     const [search, setSearch] = useState('');
-    const [approved, setApproved] = useState([]);
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    const fetchDonations = () => {
-        // Simulación de llamada a API para obtener los usuarios
-        const fetchedDonations = [
-            { id: 1, type: 'Utiles escolares', user: 'Rogelio Perez', campaign: 'Inicio de clases', details: '20 cuadernos', amount: '0', date: '2024-05-01', approved: true, approvaldate: '2024-05-01', approvedby: 'Cesar'},
-            { id: 2, type: 'ropa', user: 'Eunice Chavez', campaign: '', details: '5 camisas y 3 pantalones', amount: '0', date: '2024-05-01', approved: false, approvaldate: '2024-05-01', approvedby: 'Cesar'},
-            // Otros usuarios...
-        ];
-        setDonations(fetchedDonations);
-    };
-
-    useEffect(() => {
-        fetchDonations();
-    }, [location]);
+    const [alertaApprove, setAlertaApprove] = useState(false);
+    const [alertaApproveYS, setAlertaApproveYS] = useState(false);
 
     const handleReloadDonations = () => {
-        fetchDonations();
+        window.location.reload();
     };
 
     const handleSearchChange = (e) => {
@@ -32,10 +23,30 @@ const VerDonaciones = () => {
     };
 
     const handleCheckboxClick = (id) => {
-        setApproved(
-            
+        if (donations.filter(donation => donation.id === id)[0].user === userId) {
+            setAlertaApproveYS(true);
+            setTimeout(() => {
+                setAlertaApproveYS(false);
+            }, 3000);
+        } else { 
+            const approval = {
+                approved: 1,
+                approvedBy: userId
+            };
 
-        );
+            putData('http://localhost:4000/api/donation/' + id, approval)
+                .then(data => {
+                    console.log('Success:', data);
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+
+                    setAlertaApprove(true);
+                    setTimeout(() => {
+                        setAlertaApprove(false);
+                    }, 3000);
+                });}
     };
 
     return (
@@ -54,36 +65,44 @@ const VerDonaciones = () => {
                 <thead>
                     <tr>
                         <th>Usuario</th>
-                        <th>Tipo</th>
                         <th>Campaña</th>
                         <th>Detalles</th>
-                        <th>Monto</th>
                         <th>Fecha</th>
                         <th>Aprobación</th>
                         <th>Aprobado por</th>
+                        <th>Fecha Aprobación</th>
                     </tr>
                 </thead>
                 <tbody>
-                {donations.filter(donation => donation.user.toLowerCase().includes(search.toLowerCase())).map(donation => (
+                {donations && users && donations.filter(donation => users.find(user => user.id === donation.user).name.toLowerCase().includes(search.toLowerCase())).map(donation => (
                     <tr key={donation.id}>
-                        <td>{donation.user}</td>
-                        <td>{donation.type}</td>
+                        <td>{users.find(user => user.id === donation.user).name}</td>
                         <td>{donation.campaign}</td>
                         <td>{donation.details}</td>
-                        <td>{donation.amount}</td>
-                        <td>{donation.date}</td>
+                        <td>{new Date(donation.dateTime).toLocaleString([], { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</td>
                         <td>
-                            <input
-                                type="checkbox"
-                                checked={donation.approved}
-                                onChange={() => handleCheckboxClick(donation.id)}
-                            />
+                            {donation.approved != 1 ? (
+                                <button onClick={() => handleCheckboxClick(donation.id)}>Aprobar</button>
+                            ) : (
+                                <p>Aprobado</p>
+                            )}
                         </td>
-                        <td>{donation.approvedby}</td>
+                        <td>{users && donation.approved === 1 && users.find(user => user.id === donation.approvedBy).name}</td>
+                        <td>{donation.approved === 1 && new Date(donation.approvalDateTime).toLocaleString([], { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</td>
                     </tr>
                 ))}
                 </tbody>
             </table>
+            {alertaApprove && 
+                <div className="alert">
+                Ocurrió un error a la hora de aprobar la donación, por favor inténtelo de nuevo.
+                </div>
+            }
+            {alertaApproveYS && 
+                <div className="alert">
+                No se puede aprobar su propia donación!
+                </div>
+            }
         </div>
     );
 };

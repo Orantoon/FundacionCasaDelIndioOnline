@@ -1,52 +1,52 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../Admin/GestionRoles/AuthContext';
 import './Donacion.css';
+import { useGet } from '../../useGet';
+import { postData } from '../../postData';
 
 const Donacion = () => {
-    const { user } = useAuth();
+    // GET Users
+    const { variable: users } = useGet('http://localhost:4000/api/usuario');
+    const userId = sessionStorage.getItem('userId');
+    // GET Campaigns
+    const { variable: campaigns } = useGet('http://localhost:4000/api/donationcampaign');
+
     const navigate = useNavigate();
-    const [type, setType] = useState('');
-    const [name, setName] = useState('');
-    const [campaign, setCampaign] = useState('');
+    const [campaignDonacion, setCampaignDonacion] = useState(null);
     const [details, setDetails] = useState('');
-    const [amount, setAmount] = useState('');
-
-    const handleTypeChange = (e) => {
-        setType(e.target.value);
-    };
-
-    const handleNameChange = (e) => {
-        setName(e.target.value);
-    };
+    const [alertaDonation, setAlertaDonation] = useState(false);
 
     const handleCampaignChange = (e) => {
-        setCampaign(e.target.value);
+        setCampaignDonacion(e.target.value);
     };
 
     const handleDetailsChange = (e) => {
         setDetails(e.target.value);
     };
 
-    const handleAmountChange = (e) => {
-        setAmount(e.target.value);
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Perform donation submission logic here
-        console.log('Donation submitted!');
-        console.log('Type:', type);
-        console.log('Name:', name);
-        console.log('Campaign:', campaign);
-        console.log('Details:', details);
-        console.log('Amount:', amount);
-        // Reset form fields
-        setType('');
-        setName('');
-        setCampaign('');
-        setDetails('');
-        setAmount('');
+
+        const donation = {
+            user: parseInt(sessionStorage.getItem('userId'), 10),
+            details: details, 
+            campaign: campaignDonacion
+        };
+
+        console.log(donation)
+
+        postData('http://localhost:4000/api/donation', donation)
+        .then(data => {
+            console.log('Success:', data);
+            navigate('/'); // Regresa a la página Home
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            setAlertaDonation(true);
+            setTimeout(() => {
+                setAlertaDonation(false);
+            }, 3000);
+        });
     };
 
     const handleVerDonaciones = () => {
@@ -55,28 +55,19 @@ const Donacion = () => {
 
     return (
         <div className="donacion">
-        {user && user.role === 'Admin' && (
+        {users && users.find(user => user.id === parseInt(userId, 10))?.isAdmin === 1 && (
             <button onClick={handleVerDonaciones}>Ver Donaciones</button>
         )}
             <h2>Hacer Donación</h2>
             <form onSubmit={handleSubmit}>
-                <label>
-                    Type:
-                    <select value={type} onChange={handleTypeChange}>
-                        <option value="">Select Type</option>
-                        <option value="One-time">One-time</option>
-                        <option value="Monthly">Monthly</option>
-                        <option value="Yearly">Yearly</option>
-                    </select>
-                </label>
                 <br />
                 <label>
                     Campaign:
-                    <select value={campaign} onChange={handleCampaignChange}>
-                        <option value="">Select Campaign</option>
-                        <option value="Campaign A">Campaign A</option>
-                        <option value="Campaign B">Campaign B</option>
-                        <option value="Campaign C">Campaign C</option>
+                    <select onChange={handleCampaignChange}>
+                        <option>Select Campaign</option>
+                        {campaigns && campaigns.map(campaign => (
+                            <option key={campaign.id} value={campaign.id}>{campaign.name}</option>
+                        ))}
                     </select>
                 </label>
                 <br />
@@ -85,13 +76,13 @@ const Donacion = () => {
                     <textarea value={details} onChange={handleDetailsChange} />
                 </label>
                 <br />
-                <label>
-                    Amount:
-                    <input type="number" value={amount} onChange={handleAmountChange} />
-                </label>
-                <br />
                 <button type="submit">Donate</button>
             </form>
+            {alertaDonation && 
+                <div className="alert">
+                Ocurrió un error al crear la donación, por favor inténtelo de nuevo.
+                </div>
+            }
         </div>
     );
 };

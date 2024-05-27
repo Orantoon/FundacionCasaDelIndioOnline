@@ -1,11 +1,11 @@
 import {Router} from 'express'
-import {getDonationsUser, postDonation, approveDonation} from '../controllers/donation.controller.js'
+import {getDonations, postDonation, approveDonation} from '../controllers/donation.controller.js'
 
 const router = Router();
 
 // Usuario
 
-router.get('/donation/:user', getDonationsUser);
+router.get('/donation', getDonations);
 
 router.post('/donation', postDonation);
 

@@ -1,13 +1,9 @@
 import {pool} from '../db.js'
 
-export const getDonationsUser = async (req, res) => {
+export const getDonations = async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM Donation WHERE user = ?', [req.params.user]);
-    
-        if (rows.length <= 0) return res.status(404).json({
-            message: 'Donation not found'      
-        })
-        
+        //throw new Error("ERROR de prueba")
+        const [rows] = await pool.query('SELECT * FROM Donation')
         res.json(rows)
     } catch (error) {
         return res.status(500).json({
@@ -50,7 +46,9 @@ export const approveDonation = async (req, res) => {
     const { id } = req.params;
     const {approved, approvedBy} = req.body;
     const currentDate = new Date();
-    const approvalDateTime = currentDate.toISOString().slice(0, 10)
+    const offset = currentDate.getTimezoneOffset() * 60000;
+    const localDate = new Date(currentDate.getTime() - offset);
+    const approvalDateTime = localDate.toISOString().slice(0, 19).replace('T', ' ');
 
     try {
         const [result] = await pool.query(
