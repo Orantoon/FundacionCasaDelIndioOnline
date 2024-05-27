@@ -15,7 +15,9 @@ export const getDonationcampaigns = async (req, res) => {
 export const postDonationcampaign = async (req, res) => {
     const {community, name, text} = req.body
     const currentDate = new Date();
-    const creationDateTime = currentDate.toISOString().slice(0, 10)
+    const offset = currentDate.getTimezoneOffset() * 60000;
+    const localDate = new Date(currentDate.getTime() - offset);
+    const creationDateTime = localDate.toISOString().slice(0, 19).replace('T', ' ');
 
     try {
         const [rows] = await pool.query('INSERT INTO Donationcampaign (community, name, text, creationDateTime) VALUES (?, ?, ?, ?)', [community, name, text, creationDateTime])

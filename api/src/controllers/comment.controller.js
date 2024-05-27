@@ -19,7 +19,9 @@ export const getComment = async (req, res) => {
 export const postComment = async (req, res) => {
     const {user, post, text} = req.body
     const currentDate = new Date();
-    const creationDateTime = currentDate.toISOString().slice(0, 10)
+    const offset = currentDate.getTimezoneOffset() * 60000;
+    const localDate = new Date(currentDate.getTime() - offset);
+    const creationDateTime = localDate.toISOString().slice(0, 19).replace('T', ' ');
 
     try {
         const [rows] = await pool.query('INSERT INTO Comment (user, post, text, creationDateTime) VALUES (?, ?, ?, ?)', [user, post, text, creationDateTime])

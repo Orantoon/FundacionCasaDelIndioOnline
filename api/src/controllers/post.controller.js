@@ -31,7 +31,9 @@ export const getPost = async (req, res) => {
 export const postPost = async (req, res) => {
     const {user, name, text, image} = req.body
     const currentDate = new Date();
-    const creationDateTime = currentDate.toISOString().slice(0, 10)
+    const offset = currentDate.getTimezoneOffset() * 60000;
+    const localDate = new Date(currentDate.getTime() - offset);
+    const creationDateTime = localDate.toISOString().slice(0, 19).replace('T', ' ');
 
     try {
         const [rows] = await pool.query('INSERT INTO Post (user, name, text, image, creationDateTime) VALUES (?, ?, ?, ?, ?)', [user, name, text, image, creationDateTime])

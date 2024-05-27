@@ -10,7 +10,6 @@ function Login() {
 
   // Enviar a otra pantalla
   let navigate = useNavigate();
-
   
   const [isRightPanelActive, setRightPanelActive] = React.useState(false);
   const [alertaLogin, setAlertaLogin] = React.useState(false);
@@ -77,6 +76,7 @@ function Login() {
         console.log('New user ID:', userId);
         sessionStorage.setItem('userId', userId); // Se guarda el nuevo usuario en la variable de session
         navigate('/');
+        window.location.reload();
       })
       .catch(error => {
         console.error('Error:', error);

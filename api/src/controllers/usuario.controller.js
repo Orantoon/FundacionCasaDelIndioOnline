@@ -31,7 +31,9 @@ export const getUsuario = async (req, res) => {
 export const postUsuario = async (req, res) => {
     const {name, email, password, isAdmin, newsletter, fundation} = req.body
     const currentDate = new Date();
-    const creationDateTime = currentDate.toISOString().slice(0, 10)
+    const offset = currentDate.getTimezoneOffset() * 60000;
+    const localDate = new Date(currentDate.getTime() - offset);
+    const creationDateTime = localDate.toISOString().slice(0, 19).replace('T', ' ');
 
     try {
         const [rows] = await pool.query('INSERT INTO User (name, email, password, isAdmin, newsletter, creationDateTime, fundation) VALUES (?, ?, ?, ?, ?, ?, ?)', [name, email, password, isAdmin, newsletter, creationDateTime, fundation])

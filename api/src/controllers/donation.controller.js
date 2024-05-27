@@ -21,8 +21,11 @@ export const postDonation = async (req, res) => {
     const approved = 0 
     const approvalDateTime = null
     const approvedBy = null
+    
     const currentDate = new Date();
-    const dateTime = currentDate.toISOString().slice(0, 10)
+    const offset = currentDate.getTimezoneOffset() * 60000;
+    const localDate = new Date(currentDate.getTime() - offset);
+    const dateTime = localDate.toISOString().slice(0, 19).replace('T', ' ');
 
     try {
         const [rows] = await pool.query('INSERT INTO Donation (user, campaign, details, dateTime, approved, approvalDateTime, approvedBy) VALUES (?, ?, ?, ?, ?, ?, ?)', [user, campaign, details, dateTime, approved, approvalDateTime, approvedBy])

@@ -56,7 +56,7 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage images={images}/>} />
           <Route path="/sobre-nosotros" element={<SobreNosotros images={images}/>} />
           <Route path="/comunidades" element={<Comunidades images={images}/>} />
           <Route path="/login" element={<Login/>} />

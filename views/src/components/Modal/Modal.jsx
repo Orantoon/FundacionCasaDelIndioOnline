@@ -145,7 +145,6 @@ const Modal = ({ isOpen, onClose, images, title, description, image, date, isAdm
                 <input
                   type="file"
                   accept="image/*"
-                  multiple
                   onChange={handleImageChange}
                 />
               </label>

@@ -4,16 +4,15 @@ import { useGet } from '../../useGet';
 import PublicacionCard from '../../components/PublicacionCard/PublicacionCard';
 import './style.css';
 
-const Publicaciones = ({images}) => {
+const Publicaciones = ({ images }) => {
   // GET Post
-  const {variable: posts} = useGet('http://localhost:4000/api/post');
+  const { variable: posts } = useGet('http://localhost:4000/api/post');
   // GET Users
-  const {variable: users} = useGet('http://localhost:4000/api/usuario');
+  const { variable: users } = useGet('http://localhost:4000/api/usuario');
   const userId = sessionStorage.getItem('userId');
 
   const navigate = useNavigate();
   const [visibleCards, setVisibleCards] = useState(3);
-
 
   const handleCreatePost = () => {
     navigate('/crear-publicacion');
@@ -32,6 +31,7 @@ const Publicaciones = ({images}) => {
         {posts && posts
           .slice()
           .sort((a, b) => new Date(b.creationDateTime) - new Date(a.creationDateTime))
+          .slice(0, visibleCards) // Limitar el número de publicaciones mostradas
           .map((post, index) => (
             <PublicacionCard
               key={index}
@@ -41,13 +41,13 @@ const Publicaciones = ({images}) => {
             />
           ))}
       </div>
-      {posts && visibleCards < posts.length && (
+      {posts && (visibleCards < posts.length) && (
         <div className="load-more-container">
           <button className="load-more-button" onClick={handleLoadMore}>Cargar más</button>
         </div>
       )}
     </div>
-  );  
+  );
 };
 
 export default Publicaciones;
