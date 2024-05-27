@@ -1,29 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './UserManagement.css';
+import { useGet } from '../../../useGet';
 
 const UserManagement = () => {
-  const [users, setUsers] = useState([]);
+  // GET Users
+  const { variable: users } = useGet('http://localhost:4000/api/usuario');
+  const userId = sessionStorage.getItem('userId');
+
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const fetchUsers = () => {
-    // Simulación de llamada a API para obtener los usuarios
-    const fetchedUsers = [
-      { id: 1, name: 'Juan Perez', role: 'Admin', email: 'juan@example.com', lastVisit: '2024-05-01' },
-      { id: 2, name: 'Maria Lopez', role: 'User', email: 'maria@example.com', lastVisit: '2024-05-03' },
-      // Otros usuarios...
-    ];
-    setUsers(fetchedUsers);
-  };
-
-  useEffect(() => {
-    fetchUsers();
-  }, [location]);
 
   const handleReloadUsers = () => {
-    fetchUsers();
+    window.location.reload();
   };
 
   const handleSearchChange = (e) => {
@@ -52,19 +41,17 @@ const UserManagement = () => {
             <th>Nombre</th>
             <th>Email</th>
             <th>Rol</th>
-            <th>Última Visita</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          {users.filter(user => user.name.toLowerCase().includes(search.toLowerCase())).map(user => (
+          {users && users.filter(user => user.name.toLowerCase().includes(search.toLowerCase())).map(user => (
             <tr key={user.id}>
               <td>{user.name}</td>
               <td>{user.email}</td>
-              <td>{user.role === 'Admin' ? 'Administrador' : user.role === 'User' ? 'Visitante' : 'Personalizado'}</td>
-              <td>{user.lastVisit}</td>
+              <td>{user.isAdmin === 1 ? 'Administrador' : user.isAdmin === 0 ? 'Visitante' : 'Personalizado'}</td>
               <td>
-                <button onClick={() => handleUserClick(user.id)}>Ver Detalles</button>
+                {userId != user.id && <button onClick={() => handleUserClick(user.id)}>Ver Detalles</button>}
               </td>
             </tr>
           ))}

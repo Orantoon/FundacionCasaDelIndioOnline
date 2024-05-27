@@ -3,22 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import './ViewBitacora.css'; // Asegúrate de tener este archivo en tu proyecto
 import { useGet } from '../../../useGet';
 
-// Datos simulados de la bitácora
-const allBitacoraData = [
-  { id: 1, nombre: 'Juan Perez', cedula: '12345678', comunidad: 'Comunidad A', motivo: 'Consulta' },
-  { id: 2, nombre: 'Maria Lopez', cedula: '87654321', comunidad: 'Comunidad B', motivo: 'Asesoría' },
-  // Agrega más datos aquí
-  { id: 3, nombre: 'Carlos Martinez', cedula: '13579246', comunidad: 'Comunidad C', motivo: 'Consulta' },
-  { id: 4, nombre: 'Ana Gómez', cedula: '24681357', comunidad: 'Comunidad D', motivo: 'Asesoría' },
-  { id: 5, nombre: 'Luis Rojas', cedula: '98765432', comunidad: 'Comunidad E', motivo: 'Consulta' },
-  { id: 6, nombre: 'Carmen Silva', cedula: '56789012', comunidad: 'Comunidad F', motivo: 'Asesoría' },
-  { id: 7, nombre: 'Pedro Blanco', cedula: '67890123', comunidad: 'Comunidad G', motivo: 'Consulta' },
-  { id: 8, nombre: 'Laura Torres', cedula: '89012345', comunidad: 'Comunidad H', motivo: 'Asesoría' },
-  { id: 9, nombre: 'Miguel Fernández', cedula: '90123456', comunidad: 'Comunidad I', motivo: 'Consulta' },
-  { id: 10, nombre: 'Rosa Sánchez', cedula: '11223344', comunidad: 'Comunidad J', motivo: 'Asesoría' },
-  { id: 11, nombre: 'Daniel Ramírez', cedula: '22334455', comunidad: 'Comunidad K', motivo: 'Consulta' },
-];
-
 const PAGE_SIZE = 3;
 
 function ViewBitacora() {

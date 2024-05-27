@@ -98,8 +98,10 @@ export const deletePost = async (req, res) => {
         res.sendStatus(204)
     } catch (error) {
         await pool.query('ROLLBACK');
+        console.error('Error deleting Post:', error);
         return res.status(500).json({
-            message: 'Something went wrong'
+            message: 'Something went wrong',
+            error: error.message
         });
     }
 };

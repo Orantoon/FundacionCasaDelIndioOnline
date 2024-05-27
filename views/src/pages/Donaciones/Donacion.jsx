@@ -17,7 +17,8 @@ const Donacion = () => {
     const [alertaDonation, setAlertaDonation] = useState(false);
 
     const handleCampaignChange = (e) => {
-        setCampaignDonacion(e.target.value);
+        const value = e.target.value;
+        setCampaignDonacion(value === "" ? null : parseInt(value));
     };
 
     const handleDetailsChange = (e) => {
@@ -26,10 +27,6 @@ const Donacion = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        if (campaignDonacion === 'Select Campaign'){
-            setCampaignDonacion(null);
-        } 
 
         const donation = {
             user: parseInt(sessionStorage.getItem('userId'), 10),
@@ -68,9 +65,9 @@ const Donacion = () => {
                 <label>
                     Campaign:
                     <select onChange={handleCampaignChange}>
-                        <option>Select Campaign</option>
+                        <option value="">Select Campaign</option>
                         {campaigns && campaigns.map(campaign => (
-                            <option key={campaign.id} value={campaign.id}>{campaign.name}</option>
+                        <option key={campaign.id} value={campaign.id}>{campaign.name}</option>
                         ))}
                     </select>
                 </label>

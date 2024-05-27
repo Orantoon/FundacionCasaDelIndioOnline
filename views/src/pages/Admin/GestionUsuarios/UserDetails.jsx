@@ -1,105 +1,97 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './UserDetails.css';
+import { useGet } from '../../../useGet';
+import { putData } from '../../../putData';
+import {deleteData} from '../../../deleteData';
 
 const UserDetails = () => {
+  // GET Users
+  const { variable: users } = useGet('http://localhost:4000/api/usuario');
+
   const { userId } = useParams();
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const [alertaUsuario, setAlertaUsuario] = useState(false);
+  const [alertaDelete, setAlertaDelete] = useState(false);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [role, setRole] = useState('');
-  const [permissions, setPermissions] = useState({
-    createPosts: false,
-    modifyPosts: false,
-    createEvents: false,
-    viewDonations: false,
-    modifyUsers: false
-  });
-
+  const [password, setPassword] = useState('');
+  const [isAdmin, setIsAdmin] = useState(0);
+  const [newsletter, setNewsletter] = useState(0);
+ 
   useEffect(() => {
-    // Simulación de llamada a API para obtener los detalles del usuario
-    const fetchedUser = {
-      id: userId,
-      name: 'Juan Perez',
-      role: 'User',
-      email: 'juan@example.com',
-      lastVisit: '2024-05-01',
-      permissions: {
-        createPosts: true,
-        modifyPosts: false,
-        createEvents: true,
-        viewDonations: false,
-        modifyUsers: false
-      }
-    };
-    setUser(fetchedUser);
-    setName(fetchedUser.name);
-    setEmail(fetchedUser.email);
-    setRole(fetchedUser.role);
-    setPermissions(fetchedUser.permissions);
-  }, [userId]);
+    const user = users && users.filter(user => user.id === parseInt(userId))[0];
+    if (user) {
+      setName(user.name);
+      setEmail(user.email);
+      setPassword(user.password);
+      setIsAdmin(user.isAdmin);
+      setNewsletter(user.newsletter);
+    }
+  }, [userId, users]);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
 
-  const handleRoleChange = (e) => {
-    setRole(e.target.value);
+  const handleIsAdminChange = (e) => {
+    setIsAdmin(e.target.checked ? 1 : 0);
   };
 
-  const handlePermissionChange = (e) => {
-    setPermissions({ ...permissions, [e.target.name]: e.target.checked });
+  const handleNewsletterChange = (e) => {
+    setNewsletter(e.target.checked ? 1 : 0);
   };
 
   const handleSaveChanges = () => {
-    // Simulación de llamada a API para actualizar el usuario
-    const updatedUser = { name, role, permissions };
 
-    // Comentando la parte que envía los datos a la base de datos y simulando una respuesta exitosa
-    // fetch(`/api/users/${userId}`, {
-    //   method: 'PUT',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(updatedUser)
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //   console.log('Cambios guardados:', data);
-    //   navigate('/gestion-usuarios');
-    // })
-    // .catch(error => {
-    //   console.error('Error al guardar los cambios:', error);
-    // });
+    const updatedUser = { 
+      name: name, 
+      email: email,
+      password: password,
+      isAdmin: isAdmin, 
+      newsletter: newsletter,
+    };
 
-    // Simulación de respuesta exitosa y redirección a la página de gestión de usuarios
+    putData('http://localhost:4000/api/usuario/' + parseInt(userId), updatedUser)
+      .then(data => {
+          console.log('Success:', data);
+          window.location.reload();
+      })
+      .catch(error => {
+          console.error('Error:', error);
+
+          setAlertaUsuario(true);
+          setTimeout(() => {
+            setAlertaUsuario(false);
+          }, 3000);
+      });
+
     console.log('Cambios guardados:', updatedUser);
     navigate('/gestion-usuarios');
   };
 
   const handleDeleteUser = () => {
-    // Simulación de llamada a API para eliminar el usuario
-    // fetch(`/api/users/${userId}`, {
-    //   method: 'DELETE'
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //   console.log('Usuario eliminado:', data);
-    //   navigate('/gestion-usuarios');
-    // })
-    // .catch(error => {
-    //   console.error('Error al eliminar el usuario:', error);
-    // });
 
-    // Simulación de eliminación y redirección a la página de gestión de usuarios
-    console.log('Usuario eliminado');
-    navigate('/gestion-usuarios');
+    if (window.confirm('¿Está seguro de eliminar el usuario?')) {
+      console.log(`Eliminar Usuario ${userId}`);
+
+      deleteData('http://localhost:4000/api/usuario/' + parseInt(userId))
+      .then(data => {
+        console.log('Success:', data);
+        navigate('/gestion-usuarios');
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+
+        setAlertaDelete(true);
+          setTimeout(() => {
+            setAlertaDelete(false);
+          }, 3000);
+      });
+    }
   };
-
-  if (!user) {
-    return <div>Cargando...</div>;
-  }
 
   return (
     <div className="user-details">
@@ -114,67 +106,28 @@ const UserDetails = () => {
           <input type="email" value={email} disabled className="non-selectable" />
         </label>
         <label>
-          Rol:
-          <select value={role} onChange={handleRoleChange}>
-            <option value="Admin">Administrador</option>
-            <option value="User">Visitante</option>
-            <option value="Custom">Personalizado</option>
-          </select>
+          Es Administrador:
+          <input type="checkbox" checked={isAdmin === 1} value={isAdmin} onChange={handleIsAdminChange} />
         </label>
-        {role === 'Custom' && (
-          <div className="permissions">
-            <h3>Permisos</h3>
-            <label>
-              <input 
-                type="checkbox" 
-                name="createPosts" 
-                checked={permissions.createPosts} 
-                onChange={handlePermissionChange} 
-              />
-              Crear Publicaciones
-            </label>
-            <label>
-              <input 
-                type="checkbox" 
-                name="modifyPosts" 
-                checked={permissions.modifyPosts} 
-                onChange={handlePermissionChange} 
-              />
-              Modificar Publicaciones
-            </label>
-            <label>
-              <input 
-                type="checkbox" 
-                name="createEvents" 
-                checked={permissions.createEvents} 
-                onChange={handlePermissionChange} 
-              />
-              Crear Eventos
-            </label>
-            <label>
-              <input 
-                type="checkbox" 
-                name="viewDonations" 
-                checked={permissions.viewDonations} 
-                onChange={handlePermissionChange} 
-              />
-              Ver Donaciones
-            </label>
-            <label>
-              <input 
-                type="checkbox" 
-                name="modifyUsers" 
-                checked={permissions.modifyUsers} 
-                onChange={handlePermissionChange} 
-              />
-              Modificar Usuarios
-            </label>
-          </div>
-        )}
+        <label>
+          Newsletter:
+          <input type="checkbox" checked={newsletter === 1} value={newsletter} onChange={handleNewsletterChange} />
+        </label>
+        
         <button onClick={handleSaveChanges}>Guardar Cambios</button>
         <button onClick={handleDeleteUser} className="delete-button">Eliminar Usuario</button>
         <button onClick={() => navigate('/gestion-usuarios')} className="back-button">Atrás</button>
       </div>
+      {alertaUsuario && 
+        <div className="alert">
+        Ocurrió un error a la hora de actualizar el usuario, por favor inténtelo de nuevo.
+        </div>
+      }
+      {alertaDelete && 
+        <div className="alert">
+          Ocurrió un error a la hora de eliminar el usuario, por favor inténtelo de nuevo.
+        </div>
+      }
     </div>
   );
 };

@@ -26,14 +26,13 @@ function Header() {
         </Link>
       </div>
       <nav className="navigation">
-        {isAdmin && 
-          <Link to="/bitacora-options">Bitacoras</Link>
-        }
         <Link to="/sobre-nosotros">Sobre nosotros</Link>
         <Link to="/publicaciones">Publicaciones</Link>
-        <Link to="/donacion">Donacion</Link>
+        <Link to="/donacion">Donación</Link>
         <Link to="/comunidades">Comunidades</Link>
         <Link to="/idiomas">Idiomas</Link>
+        {isAdmin && <Link to="/bitacora-options">Bitácoras</Link>}
+        {isAdmin && <Link to="/gestion-usuarios">Gestión</Link>}
 
         {userId === null || userId === "-1" ? (
           <Link to="/login">Iniciar Sesión</Link>
