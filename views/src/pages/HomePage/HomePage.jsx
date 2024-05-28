@@ -86,15 +86,15 @@ function HomePage({images}) {
         </div>
       </div>
   
-      <div className="white-section">
+      {userId != null || userId != "-1" && <div className="white-section">
         <hr className="horizontal-line" /> 
         <div className="white-section-content">
           <h2>¿Interesado en ayudar?</h2>
-          <p>La fundación busca tanto recursos como personal voluntario para las giras y proyectos para seguir apoyando a los pueblos originarios, si está interesado no dude en dirigirse a la sección de donaciones</p>
-          <button onClick={handleButtonDonacion}>Donaciones</button>
+          <p>La fundación busca tanto recursos como personal voluntario para las giras y proyectos para seguir apoyando a los pueblos originarios, si está interesado no dude en dirigirse a la sección de Donación.</p>
+          <button onClick={handleButtonDonacion}>Apoyar</button>
         </div>
         <hr className="horizontal-line" /> 
-      </div>
+      </div>}
     </div>
   );
   

@@ -9,7 +9,8 @@ SELECT * FROM Fundation;
 
 -- User
 INSERT INTO User (name, email, password, isAdmin, newsletter, creationDateTime, fundation) VALUES ('David', 'david@gmail.com', 'prueba1234', 0, 1, NOW(), 1);
-INSERT INTO User (name, email, password, isAdmin, newsletter, creationDateTime, fundation) VALUES ('Alicia', 'alicia@gmail.com', 'prueba1234', 1, 0, NOW(), 1);
+INSERT INTO User (name, email, password, isAdmin, newsletter, creationDateTime, fundation) VALUES ('Cesar', 'cesar@gmail.com', 'prueba1234', 1, 0, NOW(), 1);
+INSERT INTO User (name, email, password, isAdmin, newsletter, creationDateTime, fundation) VALUES ('Prueba', 'davidsuarez2001@gmail.com', 'prueba1234', 1, 0, NOW(), 1);
 SELECT * FROM User;
 
 -- Post
@@ -51,11 +52,15 @@ INSERT INTO Slide (community, image) VALUES (4, './Card2.png');
 SELECT * FROM Slide;
 
 -- Visitlog
-INSERT INTO Visitlog (user, community, name, details, dateTime) VALUES (2, 1, 'Visita de Comunidad Prueba', 'Log de prueba de una visita de la Comunidad Prueba.', NOW());
+INSERT INTO Visitlog (user, community, name, details, dateTime) VALUES (2, 1, 'Visita de Comunidad Prueba 1', 'Log de prueba de una visita de la Comunidad Prueba 1.', NOW());
+INSERT INTO Visitlog (user, community, name, details, dateTime) VALUES (2, 2, 'Visita de Comunidad Prueba 2', 'Log de prueba de una visita de la Comunidad Prueba 2.', NOW());
+INSERT INTO Visitlog (user, community, name, details, dateTime) VALUES (2, 3, 'Visita de Comunidad Prueba 3', 'Log de prueba de una visita de la Comunidad Prueba 3.', NOW());
+INSERT INTO Visitlog (user, community, name, details, dateTime) VALUES (2, 4, 'Visita de Comunidad Prueba 4', 'Log de prueba de una visita de la Comunidad Prueba 4.', NOW());
 SELECT * FROM Visitlog;
 
 -- Donationcampaign
-INSERT INTO Donationcampaign (community, name, text, creationDateTime) VALUES (1, 'Campana de Donacion de Comunidad Prueba', 'Esta es una campana de donacion de prueba para la Comunidad Prueba.', NOW());
+INSERT INTO Donationcampaign (community, name, text, creationDateTime) VALUES (1, 'Campana de Donacion de Comunidad Prueba 1', 'Esta es una campana de donacion de prueba para la Comunidad Prueba 1.', NOW());
+INSERT INTO Donationcampaign (community, name, text, creationDateTime) VALUES (2, 'Campana de Donacion de Comunidad Prueba 2', 'Esta es una campana de donacion de prueba para la Comunidad Prueba 2.', NOW());
 SELECT * FROM Donationcampaign;
 
 -- Donation
